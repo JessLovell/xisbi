@@ -1,6 +1,12 @@
 # xisbi
 Name: XISBI   
-Description: Application for planning parties and inviting friends.   
+Description: Application for planning parties and inviting friends. 
+[User Stories](/Readmes/userStories.md)
+[Group Agreement](/Readmes/groupAgreement.md)
+
+## Project Timeline
+Day 1: Pseudo code the project, set up model, controllers, database
+Day 2: Pair programming: Auth, login, signup, HTML forms/templating
 
 ## Instructions for Use
 Heroku site: https://xisbi.herokuapp.com/
