@@ -14,3 +14,13 @@
 - As a developer I want my users to have their information to be secured by using Bcrypt. **(Time: 30 min)**
 - As a developer I want to store all the information in a database to make the data Manageable. **(Time: 3 hrs)**
 - As a developer I want to give different permissions to people depending on their role. **(Time: 1 hr)**
+
+## MVP
+- A user can register and login
+- A user can create and host a party
+- A host user can add a location, description and date to a party
+- A host user can invite registered guest users to a party
+- A host can remove a guest user from a party
+- A user can view the parties they are hosting
+- A user can view the parties they are attending
+- A guest user remove themselves from a party
