@@ -1,0 +1,16 @@
+## User Stories
+- As a party host I want to be able to use an app to create a party | **(Time: 4 days)**
+- As a party host I want to be able to use it on my mobile device | **(Time: 3 hrs)**
+- As a party host I want to be able to add, update, delete things from my party | **(Time: 1 hr)**
+- As a user I’d like a level of security for my account | **(Time: 5 hrs)**
+- As a user/guest, I would like to see what parties I am invited to so that I can decide if I want to go to a party. | **(Time: 20 min)**
+- As a user/guest, I would like to see the details (date, location, description, guest list) of a party to help me decide on a party. | **(Time: 20 min)** 
+- As a user I would like to easily navigate the website and intuitively know where to look for more information. | **(Time: 8 hrs)**
+- As a user I would want my password to be hashed. | **(Time: 1 hr)**
+
+
+## Developer Stories
+- As a developer I want to use templating in my pages to reduce space and redundancy. **(Time: 1 hr)**
+- As a developer I want my users to have their information to be secured by using Bcrypt. **(Time: 30 min)**
+- As a developer I want to store all the information in a database to make the data Manageable. **(Time: 3 hrs)**
+- As a developer I want to give different permissions to people depending on their role. **(Time: 1 hr)**
