@@ -24,3 +24,7 @@
 - A user can view the parties they are hosting
 - A user can view the parties they are attending
 - A guest user remove themselves from a party
+
+## XISBI Flows & Functions Diagrams
+
+[https://docs.google.com/drawings/d/1HS9KH8KpBkl60zJemm6DtCp-YSyw6e8lrt08dw_Kwls/edit?usp=sharing]
