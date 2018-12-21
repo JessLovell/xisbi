@@ -9,4 +9,4 @@ Heroku site: https://xisbi.herokuapp.com/
 **Coming soon**
 
 ## Creators
-[Dave Muench](https://github.com/RazorWire13)|[Zahra Mohamed](https://github.com/zahram1087)|[Kevin Rosales](https://github.com/Kevinrosales)|[Jessica Lovell](https://github.com/JessLovell)        
+[Dave Muench](https://github.com/RazorWire13) | [Zahra Mohamed](https://github.com/zahram1087) | [Kevin Rosales](https://github.com/Kevinrosales) | [Jessica Lovell](https://github.com/JessLovell)        
