@@ -9,6 +9,12 @@
 - Take time to consider and disconnect from the tension and take a walk or something.
 - Always assume others have good intentions. 
 
+## Git process 
+- Nobody merges their own PR. The other pair needs to review and merge PR. 
+- Have a development branch the everyone pulls from, then merge to development branch. When features are completed merge to master. 
+- Master should have benchmarks: 
+  - Test of life on heroku, home page, users complete, MVP, features as completed. 
+
 ## Work plan
 - We’re planning to use Github Issues to assign tasks. 
 - Each morning we will decide who gets to work on each task (on volunteer basis). 
@@ -24,10 +30,3 @@
   - Ask for help after 15 minutes. **Be receptive for help.**
   - No work to be done over the break.
   - Jessica will be out on December 28th. Group can work without Jessica. 
-
-## Git process 
-- Nobody merges their own PR. The other pair needs to review and merge PR. 
-- Have a development branch the everyone pulls from, then merge to development branch. When features are completed merge to master. 
-- Master should have benchmarks: 
-  - Test of life on heroku, home page, users complete, MVP, features as completed. 
-
