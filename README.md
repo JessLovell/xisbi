@@ -1,8 +1,9 @@
 # xisbi
 Name: XISBI   
 Description: Application for planning parties and inviting friends.     
-[User Stories](/Readmes/userStories.md)    
-[Group Agreement](/Readmes/groupAgreement.md)  
+[User Stories](/project-assets/Readmes/userStories.md)
+[Group Agreement](/project-assets/Readmes/groupAgreement.md)
+[Wire-Frames](/project-assets/Readmes/wire-frames.md)
 
 ## Project Timeline
 Day 1: Pseudo code the project, set up model, controllers, database       
