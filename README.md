@@ -1,6 +1,7 @@
 # xisbi
 Name: XISBI   
-Description: Application for planning parties and inviting friends.     
+Description: Application for planning parties and inviting friends.
+### Project SetUp
 - [User Stories](/project-assets/Readmes/userStories.md)
 - [Group Agreement](/project-assets/Readmes/groupAgreement.md)
 - [Wire-Frames](/project-assets/Readmes/wire-frames.md)
