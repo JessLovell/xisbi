@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{common :: head}"></div>
+    <title>XISBI Login</title>
+</head>
+<header>
+    <div th:replace="~{common :: nav-bar}"></div>
+</header>
+<body>
+<div class = "container">
+    <h1>Please Login</h1>
+
+    <form action="/perform_login" method="POST">
+    <div class="form-group">
+        <label>Input Username</label>
+        <input type="text" class="form-control" id="username" aria-describedby="nameHelp"
+               placeholder="-- username --" name="username">
+        <small id="nameHelp" class="form-text text-muted">Use your Xisbi username</small>
+    </div>
+
+    <div class="form-group">
+        <label>Input Password</label>
+        <input type="password" class="form-control" id="password" aria-describedby="pwHelp"
+               placeholder="-- password --" name="password">
+        <small id="pwHelp" class="form-text text-muted">Use your Xisbi password</small>
+    </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+</body>
+</html>

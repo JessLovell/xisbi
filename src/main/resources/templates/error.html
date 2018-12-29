@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Error Handler</title>
+    <div th:replace="~{common :: head}"></div>
+</head>
+
+<header>
+    <div th:replace="~{common :: nav-bar}"></div>
+</header>
+
+<body>
+<h1>Dude! What happened?!</h1>
+<table>
+    <tr>
+        <td>Path</td>
+        <td th:text="${path}"/>
+    </tr>
+    <tr>
+        <td>Error Type</td>
+        <td th:text="${error}"/>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td th:text="${status}"/>
+    </tr>
+    <tr>
+        <td>Error Message</td>
+        <td th:text="${message}"/>
+    </tr>
+</table>
+
+</body>
+
+</html>
