@@ -7,14 +7,26 @@ Description: Application for planning parties and inviting friends.
 - [Wire-Frames](/project-assets/Readmes/wire-frames.md)
 
 ## Project Timeline
-Day 1: Pseudo code the project, set up model, controllers, database       
-Day 2: Pair programming: Auth, login, signup, HTML forms/templating
+Day 1: DONE
+* Pseudo code the project,
+* Set up models: User
+* controllers: UserController,
+* Database: xisbi_user
+* Templates: login,signup,dashboard
+* Auth
+* Error handling: thymleaf error template
+
+Day 2: Party: model,controller, party template, permissions(host,attending)
 
 ## Instructions for Use
 Heroku site: https://xisbi.herokuapp.com/
 
-## Externeal Resources
-**Coming soon**
+## External Resources
+* [Baeldung](https://www.baeldung.com/)
+* [Bootstrap](https://getbootstrap.com/docs/4.2/components/forms/)
+* [Spring Initializr](https://start.spring.io/) with dependencies web, thymeleaf, devTools, postgreSQL, JPA, Security.
+* [Spring Auth Cheat Sheet](https://github.com/codefellows/seattle-java-401d2/blob/master/SpringAuthCheatSheet.md)
+
 
 ## Creators
 [Dave Muench](https://github.com/RazorWire13) | [Zahra Mohamed](https://github.com/zahram1087) | [Kevin Rosales](https://github.com/Kevinrosales) | [Jessica Lovell](https://github.com/JessLovell)        
