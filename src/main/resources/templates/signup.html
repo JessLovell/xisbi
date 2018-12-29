@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{common :: head}"></div>
+    <title>XISBI Sign Up</title>
+</head>
+<header>
+    <div th:replace="~{common :: nav-bar}"></div>
+</header>
+<body>
+
+<div class="container">
+    <h1>Please Create a User Account</h1>
+
+    <form action="/signup" method="POST">
+        <div class="form-group">
+            <label>Create a Username</label>
+            <input type="text" class="form-control" id="username" aria-describedby="nameHelp"
+                   placeholder="-- username --" name="username">
+            <small id="nameHelp" class="form-text text-muted">You will use this username to login to Xisbi</small>
+        </div>
+
+        <div class="form-group">
+            <label>Create a Password</label>
+            <input type="password" class="form-control" id="password" aria-describedby="pwHelp"
+                   placeholder="-- password --" name="password">
+            <small id="pwHelp" class="form-text text-muted">Please do not use your username as part of your password
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label>First Name</label>
+            <input type="text" class="form-control" id="first-name" placeholder="-- first name --" name="firstName">
+        </div>
+
+        <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" class="form-control" id="last-name" placeholder="-- last name --" name="lastName">
+        </div>
+
+        <div class="form-group">
+            <label>Birthday</label>
+            <input type="date" class="form-control" id="birthday" name="dateOfBirth">
+        </div>
+
+        <div class="form-group">
+            <label>Select Your Party Interests</label>
+            <select multiple class="form-control" id="party-interests" aria-describedby="partyHelp" name="partyInterests">
+                <option>Beer Tasting</option>
+                <option>Birthday</option>
+                <option>Cocktail</option>
+                <option>Cosplay</option>
+                <option>Holiday</option>
+                <option>Ice Cream</option>
+                <option>Luau</option>
+                <option>Masquerade</option>
+                <option>Murder Mystery</option>
+                <option>Pie</option>
+                <option>Quinceanera</option>
+                <option>Wine Tasting</option>
+            </select>
+            <small id="partyHelp" class="form-text text-muted">You may select multiple party types by holding the CTRL
+                (Windows) or COMMAND (OS X) while making selections
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

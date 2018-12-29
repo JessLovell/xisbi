@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{common :: head}"></div>
+    <title>My Dashboard</title>
+</head>
+<header>
+    <div th:replace="~{common :: nav-bar}"></div>
+</header>
+<body>
+
+<h1>Welcome to Your Dashboard</h1>
+
+<label>Username</label>
+<h3 th:text="${user.username}">username</h3>
+<img src="/img/default_user_image.png" alt="user image" class="img-thumbnail"/>
+<div>
+    <label>First Name</label>
+    <span th:text="${user.firstName}"></span>
+
+    <label>Last Name</label>
+    <span th:text="${user.lastName}"></span>
+
+    <label>Birthday</label>
+    <span th:text="${user.dateOfBirth}"></span>
+
+    <label>Your Party Interests</label>
+    <span th:text="${user.partyInterests}"></span>
+</div>
+
+</body>
+</html>

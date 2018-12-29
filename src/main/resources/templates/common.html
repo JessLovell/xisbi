@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <link href="/base.css" rel="stylesheet"/>
-    <link href="/layout.css" rel="stylesheet"/>
-    <link href="/modules.css" rel="stylesheet"/>
+    <link href="/css/base.css" rel="stylesheet"/>
+    <link href="/css/layout.css" rel="stylesheet"/>
+    <link href="/css/modules.css" rel="stylesheet"/>
 </div>
 
 <!-- Template fragment for HEADER NAVBAR buttons -->
@@ -21,17 +21,19 @@
         <a class="navbar-brand" href="#">
             <img src="/img/xisbi_header_logo.png" width="30" height="30" alt="">
         </a>
-        <button type="submit" class="btn btn-success"><a href="/login">LOGIN</a></button>
+        <button type="submit" class="btn btn-success"><a href="/login">Login</a></button>
 
-    <button type="submit" class="btn btn-success"><a href="/signup">SIGN UP</a></button>
+        <button type="submit" class="btn btn-success"><a href="/signup">Sign Up</a></button>
 
-    <button type="submit" class="btn btn-success"><a href="/dashboard">DASHBOARD</a></button>
+        <button type="submit" class="btn btn-success"><a href="/my-dashboard">Dashboard</a></button>
 
-    <button type="submit" class="btn btn-success"><a href="/logout">LOGOUT</a></button>
+        <button type="submit" class="btn btn-success"><a href="/perform_logout">Logout</a></button>
+    </nav>
 </div>
 
+
 <!-- Template fragment for FOOTER information -->
-<div th:fragment="head">
+<div th:fragment="footer">
     <a href="terms-of-service">Terms of Service</a>
 </div>
 </body>
