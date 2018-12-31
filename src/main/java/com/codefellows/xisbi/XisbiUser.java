@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Set;
 
 @Entity
 public class XisbiUser implements UserDetails {
@@ -21,6 +22,12 @@ public class XisbiUser implements UserDetails {
     public String lastName;
     public String dateOfBirth;
     public String partyInterests;
+
+    @ManyToOne
+    public Set<Party> attending;
+
+    @OneToMany (mappedBy = "partyHost")
+    public Set<Party> hosting;
 
     // XISBI XisbiUser Constructors
     public XisbiUser() {}
