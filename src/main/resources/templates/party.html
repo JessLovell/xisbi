@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{common :: head}"></div>
+    <title>Party Page</title>
+</head>
+<header>
+    <div th:replace="~{common :: nav-bar}"></div>
+</header>
+<body>
+
+<h1>Please Create Your Party</h1>
+
+<!-- FORM SECTION FOR INITIAL PARTY CREATION -->
+<form action="/party/create" method="POST">
+    <div class="form-group">
+        <label>Create a Party Title</label>
+        <input type="text" class="form-control" id="partyTitle" aria-describedby="titleHelp"
+               placeholder="-- title --" name="partyTitle">
+    </div>
+
+    <div class="form-group">
+        <label>Select a Date for your Party</label>
+        <input type="date" class="form-control" id="partyDate" aria-describedby="dateHelp"
+               name="partyDate">
+    </div>
+
+    <div class="form-group">
+        <label>Provide a Time for your Party</label>
+        <input type="time" class="form-control" id="partyTime" aria-describedby="timeHelp"
+               name="partyTime">
+        <small id="timeHelp" class="form-text text-muted">Times are added in a HH:MM AM or PM format</small>
+    </div>
+
+    <div class="form-group">
+        <label>Provide a Location for your Party</label>
+        <input type="text" class="form-control" id="partyLocation" aria-describedby="locationHelp"
+               name="partyLocation">
+    </div>
+
+    <div class="form-group">
+        <label>Provide a Description for your Party</label>
+        <input type="text" class="form-control" id="partyDescription" aria-describedby="locationHelp"
+               name="partyDescription">
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<!-- FORM SECTION FOR PARTY UPDATES AND GUEST LIST ADDITION -->
+<!--TODO: add guest view here-->
+
+<div th:if="${update}">
+    <form th:action="${'/party/' + party.id + '/update'}" th:method="POST">
+        <div class="form-group">
+            <label>Please Add Guest(s) to your Party</label>
+            <input type="text" class="form-control" id="username" aria-describedby="guestHelp"
+                   name="username">
+            <small id="guestHelp" class="form-text text-muted">Please use a guest's username when adding them to your
+                party
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-success">Add Guest</button>
+    </form>
+</div>
+
+</body>
+</html>

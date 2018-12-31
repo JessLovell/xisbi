@@ -3,6 +3,7 @@ package com.codefellows.xisbi;
 import javax.persistence.*;
 import java.util.Set;
 
+@Entity
 public class Party {
 
     // Generate PARTY table within xisbi_app database with a table name of the class "party"
@@ -17,8 +18,8 @@ public class Party {
     public String partyLocation;
     public String partyDescription;
 
-    @OneToMany (mappedBy = "attending")
-    public Set<XisbiUser> guestList;
+//    @OneToMany (mappedBy = "attending")
+//    public Set<XisbiUser> guestList;
 
     @ManyToOne
     public XisbiUser partyHost;
