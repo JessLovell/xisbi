@@ -26,6 +26,7 @@ Heroku site: https://xisbi.herokuapp.com/
 * [Bootstrap](https://getbootstrap.com/docs/4.2/components/forms/)
 * [Spring Initializr](https://start.spring.io/) with dependencies web, thymeleaf, devTools, postgreSQL, JPA, Security.
 * [Spring Auth Cheat Sheet](https://github.com/codefellows/seattle-java-401d2/blob/master/SpringAuthCheatSheet.md)
+* [Spring PUT/DELETE methods](https://stackoverflow.com/questions/24256051/delete-or-put-methods-in-thymeleaf)
 
 
 ## Creators
