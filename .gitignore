@@ -38,15 +38,11 @@ captures/
 
 # Intellij
 *.iml
-
-# This might do the trick to not push ANY idea files
-**/.idea/**
-
-**/.idea/workspace.xml
-**/.idea/tasks.xml
-**/.idea/gradle.xml
-**/.idea/dictionaries
-**/.idea/libraries
+*/.idea/workspace.xml
+*/.idea/tasks.xml
+*/.idea/gradle.xml
+*/.idea/dictionaries
+*/.idea/libraries
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
@@ -100,29 +96,28 @@ gen-external-apklibs
 obj/
 
 # IntelliJ IDEA
+.idea
 *.iws
+*.iml
+*.ipr
 /out/
 
 # User-specific configurations
-
-# This might do the trick to not push ANY idea files
-**/.idea/**
-
-**/.idea/libraries/
-**/.idea/.name
-**/.idea/compiler.xml
-**/.idea/copyright/profiles_settings.xml
-**/.idea/encodings.xml
-**/.idea/misc.xml
-**/.idea/modules.xml
-**/.idea/scopes/scope_settings.xml
-**/.idea/vcs.xml
-**/.idea/jsLibraryMappings.xml
-**/.idea/datasources.xml
-**/.idea/dataSources.ids
-**/.idea/sqlDataSources.xml
-**/.idea/dynamic.xml
-**/.idea/uiDesigner.xml
+*/.idea/libraries/
+*/.idea/.name
+*/.idea/compiler.xml
+*/.idea/copyright/profiles_settings.xml
+*/.idea/encodings.xml
+*/.idea/misc.xml
+*/.idea/modules.xml
+*/.idea/scopes/scope_settings.xml
+*/.idea/vcs.xml
+*/.idea/jsLibraryMappings.xml
+*/.idea/datasources.xml
+*/.idea/dataSources.ids
+*/.idea/sqlDataSources.xml
+*/.idea/dynamic.xml
+*/.idea/uiDesigner.xml
 
 # OS-specific files
 .DS_Store
