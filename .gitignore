@@ -38,6 +38,10 @@ captures/
 
 # Intellij
 *.iml
+
+# This might do the trick to not push ANY idea files
+**/.idea/**
+
 **/.idea/workspace.xml
 **/.idea/tasks.xml
 **/.idea/gradle.xml
@@ -100,6 +104,10 @@ obj/
 /out/
 
 # User-specific configurations
+
+# This might do the trick to not push ANY idea files
+**/.idea/**
+
 **/.idea/libraries/
 **/.idea/.name
 **/.idea/compiler.xml
