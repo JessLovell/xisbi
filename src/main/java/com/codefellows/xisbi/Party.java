@@ -18,8 +18,8 @@ public class Party {
     public String partyLocation;
     public String partyDescription;
 
-//    @OneToMany (mappedBy = "attending")
-//    public Set<XisbiUser> guestList;
+    @OneToMany (mappedBy = "attending")
+    public Set<XisbiUser> guestList;
 
     @ManyToOne
     public XisbiUser partyHost;

@@ -46,7 +46,6 @@ public class PartyContoller {
         XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
         newParty.partyHost = userRepo.findById(current.id).get();
         partyRepo.save(newParty);
-//        current.hosting.add(newParty);
         newParty.partyHost.hosting.add(newParty);
         userRepo.save(current);
         model.addAttribute("update", false);
@@ -77,6 +76,20 @@ public class PartyContoller {
         model.addAttribute("party", partyRepo.findById(id).get());
         model.addAttribute("update", true);
         return "party";
+    }
+
+    @RequestMapping(value ="/party/{id}/add-guest", method = RequestMethod.POST)
+    public RedirectView updateGuestList(
+            @RequestParam String guestUsername,
+            @PathVariable long id){
+//  TODO: Check DB for the user, add user to party guest list, add party to attending list
+
+        XisbiUser guest = userRepo.findByUsername(guestUsername);
+        Party party = partyRepo.findById(id).get();
+        party.guestList.add(guest);
+        partyRepo.save(party);
+        userRepo.save(guest);
+        return new RedirectView("/party/"+ id + "/update");
     }
 
 
