@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,10 +24,10 @@ public class XisbiUser implements UserDetails {
     public String dateOfBirth;
     public String partyInterests;
 
-    @ManyToMany(mappedBy = "guestList")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "guestList")
     public Set<Party> attending;
 
-    @OneToMany (mappedBy = "partyHost")
+    @OneToMany (fetch = FetchType.EAGER, mappedBy = "partyHost")
     public Set<Party> hosting;
 
     // XISBI XisbiUser Constructors

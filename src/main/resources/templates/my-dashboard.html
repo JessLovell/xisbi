@@ -28,9 +28,34 @@
     <span th:text="${user.partyInterests}"></span>
 </div>
 
-<form action="/party/create" method="GET">
-    <button type="submit" class="btn btn-success">Host a Party</button>
-</form>
+    <form action="/party/create" method="GET">
+        <button type="submit" class="btn btn-success">Host an Event</button>
+    </form>
+
+<div>
+    <div>
+        <h3>Events you are hosting:</h3>
+        <div th:if="${user.hosting != null}">
+            <ul th:each="party : ${user.hosting}">
+                <li th:text="${party.partyTitle}"></li>
+            </ul>
+        </div>
+        <div th:if="${user.hosting == null || user.hosting.size() == 0}">
+            <p>You are not hosting any events at this time.</p>
+        </div>
+    </div>
+    <div>
+        <h3>Events you are invited to:</h3>
+        <div th:if="${user.attending != null}">
+            <ul th:each="party : ${user.attending}">
+                <li th:text="${party.partyTitle}"></li>
+            </ul>
+        </div>
+        <div th:if="${user.attending == null || user.attending.size() == 0}">
+            <p>No events at this time.</p>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
