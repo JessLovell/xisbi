@@ -70,6 +70,7 @@ public class UserController {
     @RequestMapping(value="/my-dashboard", method= RequestMethod.GET)
     public String displayMyDashboard(Principal p, Model model) {
         XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
-        model.addAttribute("user", current); { return "my-dashboard"; }
+        model.addAttribute("user", current);
+        return "my-dashboard";
     }
 }

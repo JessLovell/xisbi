@@ -102,9 +102,14 @@ public class PartyContoller {
         XisbiUser guest = userRepo.findByUsername(guestUsername);
         //  add guest to the party by their ID
         Party party = partyRepo.findById(id).get();
+
         //  add to guest list and then save to party repo
         party.guestList.add(guest);
         partyRepo.save(party);
+
+        //add party to user's attending set
+        guest.attending.add(party);
+        userRepo.save(guest);
 
         return new RedirectView("/party/"+ id + "/update");
     }

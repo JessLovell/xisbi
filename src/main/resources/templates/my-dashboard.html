@@ -35,14 +35,19 @@
 <div>
     <div>
         <h3>Events you are hosting:</h3>
-        <div th:if="${}">
-            <ul th:each="${}">
-
+        <div th:if="${user.hosting != null}">
+            <ul th:each="party : ${user.hosting}">
+                <li th:text="${party.partyTitle}"></li>
             </ul>
         </div>
     </div>
     <div>
         <h3>Events you are invited to:</h3>
+        <div th:if="${user.attending != null}">
+            <ul th:each="party : ${user.attending}">
+                <li th:text="${party.partyTitle}"></li>
+            </ul>
+        </div>
     </div>
 </div>
 
