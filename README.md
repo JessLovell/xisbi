@@ -11,12 +11,17 @@ Day 1: DONE
 * Pseudo code the project,
 * Set up models: User
 * controllers: UserController,
-* Database: xisbi_user
-* Templates: login,signup,dashboard
+* Database: xisbi_app
+* Templates: login, signup, dashboard
 * Auth
-* Error handling: thymleaf error template
+* Error handling: thymeleaf error template
 
 Day 2: Party: model,controller, party template, permissions(host,attending)
+* Created party model
+* Created party controller
+* Linked party to host
+* Linked guest to party
+* Created party template
 
 ## Instructions for Use
 Heroku site: https://xisbi.herokuapp.com/
