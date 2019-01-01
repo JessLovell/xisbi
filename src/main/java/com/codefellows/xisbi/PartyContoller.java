@@ -84,11 +84,16 @@ public class PartyContoller {
             @PathVariable long id){
 //  TODO: Check DB for the user, add user to party guest list, add party to attending list
 
+//  find the guest by username
         XisbiUser guest = userRepo.findByUsername(guestUsername);
+        System.out.println(guest);
+//  add guest to the party by their ID
         Party party = partyRepo.findById(id).get();
+        System.out.println(party);
+//  add to guest list and then save to party repo
         party.guestList.add(guest);
         partyRepo.save(party);
-        userRepo.save(guest);
+
         return new RedirectView("/party/"+ id + "/update");
     }
 

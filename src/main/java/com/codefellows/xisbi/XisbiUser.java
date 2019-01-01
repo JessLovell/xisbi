@@ -23,7 +23,7 @@ public class XisbiUser implements UserDetails {
     public String dateOfBirth;
     public String partyInterests;
 
-    @ManyToOne(targetEntity = Party.class)
+    @ManyToMany(mappedBy = "guestList")
     public Set<Party> attending;
 
     @OneToMany (mappedBy = "partyHost")
