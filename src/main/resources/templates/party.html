@@ -51,17 +51,19 @@
 <!--TODO: add guest view here-->
 
 <div th:if="${update}">
-    <form th:action="${'/party/' + party.id + '/update'}" th:method="POST">
+    <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">
         <div class="form-group">
             <label>Please Add Guest(s) to your Party</label>
-            <input type="text" class="form-control" id="username" aria-describedby="guestHelp"
-                   name="username">
-            <small id="guestHelp" class="form-text text-muted">Please use a guest's username when adding them to your
-                party
+            <input type="text" class="form-control" id="guestUsername" aria-describedby="guestHelp"
+                   name="guestUsername">
+            <small id="guestHelp" class="form-text text-muted">Please use a guest's username when adding them to your party
             </small>
         </div>
 
         <button type="submit" class="btn btn-success">Add Guest</button>
+    </form>
+    <form th:action="${'/party/' + party.id + '/update'}" th:method="POST">
+        <button type="submit" class="btn btn-success">Confirm Updates</button>
     </form>
 </div>
 

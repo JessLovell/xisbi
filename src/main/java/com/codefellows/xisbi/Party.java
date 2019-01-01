@@ -18,8 +18,9 @@ public class Party {
     public String partyLocation;
     public String partyDescription;
 
-//    @OneToMany (mappedBy = "attending")
-//    public Set<XisbiUser> guestList;
+    @ManyToMany
+    @JoinTable(name = "guest_list", joinColumns = {@JoinColumn(name = "party_id")}, inverseJoinColumns = {@JoinColumn(name = "guest_id")})
+    public Set<XisbiUser> guestList;
 
     @ManyToOne
     public XisbiUser partyHost;
