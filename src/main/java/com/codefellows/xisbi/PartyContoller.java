@@ -71,12 +71,25 @@ public class PartyContoller {
     }
 
     // Displays XISBI update section in the party creation page via party.html template
-    @RequestMapping(value="/party/{id}/update", method= RequestMethod.POST)
+    @RequestMapping(value="/party/{id}/update", method= RequestMethod.PUT)
     public String updateParty(
             @PathVariable long id,
-            Model model) {
+            Model model, @RequestParam String partyTitle,
+            @RequestParam String partyTime,
+            @RequestParam String partyDate,
+            @RequestParam String partyLocation,
+            @RequestParam String partyDescription) {
 
+        Optional<Party> partyOptional = partyRepo.findById(id);
+        Party partyToUpdate = partyRepo.findById(id).get();
+
+//        if (!partyOptional.isPresent()){
+//            return "error";
+//        }
         // TODO: IF statement required to check if the party exists
+        partyToUpdate.updateParty(partyTitle, partyTime, partyDate, partyLocation, partyDescription);
+        partyRepo.save(partyToUpdate);
+
         model.addAttribute("party", partyRepo.findById(id).get());
         model.addAttribute("update", true);
         return "party";

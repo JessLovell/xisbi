@@ -54,10 +54,10 @@
 
 <div th:if="${update}">
     <!-- UPDATE THE PARTY DETAILS IN THE DB -->
-    <form action="/party/create" method="POST">
+    <form th:action="${'/party/' + party.id + '/update'}" th:method="PUT">
         <div class="form-group">
             <label>Update Event Title</label>
-            <input type="text" class="form-control" id="partyTitle" aria-describedby="titleHelp" th:placeholder="${party.partyTitle}" name="partyTitle">
+            <input type="text" class="form-control" id="partyTitle" aria-describedby="titleHelp" th:value="${party.partyTitle}" name="partyTitle">
         </div>
 
         <div class="form-group">
@@ -75,13 +75,13 @@
         <div class="form-group">
             <label>Update Event Location</label>
             <input type="text" class="form-control" id="partyLocation" aria-describedby="locationHelp"
-                   name="partyLocation" th:placeholder="${party.partyLocation}">
+                   name="partyLocation" th:value="${party.partyLocation}">
         </div>
 
         <div class="form-group">
             <label>Update Event Description</label>
             <input type="text" class="form-control" id="partyDescription" aria-describedby="locationHelp"
-                   name="partyDescription" th:placeholder="${party.partyDescription}">
+                   name="partyDescription" th:value="${party.partyDescription}">
         </div>
 
         <button type="submit" class="btn btn-success">Update Party</button>
@@ -98,9 +98,6 @@
         </div>
 
         <button type="submit" class="btn btn-success">Add Guest</button>
-    </form>
-    <form th:action="${'/party/' + party.id + '/update'}" th:method="POST">
-        <button type="submit" class="btn btn-success">Confirm Updates</button>
     </form>
 </div>
 

@@ -35,6 +35,16 @@ public class Party {
         this.partyDescription = partyDescription;
     }
 
+    public boolean updateParty(String partyTitle, String partyTime, String partyDate, String partyLocation, String partyDescription){
+        this.partyTitle = partyTitle;
+        this.partyTime = partyTime;
+        this.partyDate = partyDate;
+        this.partyLocation = partyLocation;
+        this.partyDescription = partyDescription;
+
+        return true;
+    }
+
     // Data returns XISBI party properties as a string
     public String toString () {
         return "Title: " + partyTitle + "\nHost: " + partyHost + "\nTime: " + partyTime + "\nDate: " + partyDate + "\nLocation: " + partyLocation + "\nDescription/Theme: " + partyDescription;
