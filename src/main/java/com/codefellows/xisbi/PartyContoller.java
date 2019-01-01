@@ -48,10 +48,15 @@ public class PartyContoller {
 
         // TODO: Add OPTIONAL to ensure that current user is not empty
         XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+
         newParty.partyHost = userRepo.findById(current.id).get();
+        current = userRepo.findById(current.id).get();
         partyRepo.save(newParty);
-        newParty.partyHost.hosting.add(newParty);
+
+        current.hosting.add(newParty);
+//        newParty.partyHost.hosting.add(newParty);
         userRepo.save(current);
+
         model.addAttribute("update", false);
 
         // redirect user to the party update page once a party is created

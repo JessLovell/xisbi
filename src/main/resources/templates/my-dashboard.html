@@ -40,7 +40,7 @@
                 <li th:text="${party.partyTitle}"></li>
             </ul>
         </div>
-        <div th:else="${user.hosting == null}">
+        <div th:if="${user.hosting == null || user.hosting.size() == 0}">
             <p>You are not hosting any events at this time.</p>
         </div>
     </div>
@@ -51,7 +51,7 @@
                 <li th:text="${party.partyTitle}"></li>
             </ul>
         </div>
-        <div th:if="${user.attending == null}">
+        <div th:if="${user.attending == null || user.attending.size() == 0}">
             <p>No events at this time.</p>
         </div>
     </div>

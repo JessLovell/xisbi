@@ -69,8 +69,11 @@ public class UserController {
     // Displays a XISBI user's own dashboard via my-my-dashboard.html template
     @RequestMapping(value="/my-dashboard", method= RequestMethod.GET)
     public String displayMyDashboard(Principal p, Model model) {
+
         XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
         model.addAttribute("user", current);
+        System.out.println(current.attending.size());
+
         return "my-dashboard";
     }
 }
