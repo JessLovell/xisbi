@@ -25,7 +25,11 @@ public class PartyContoller {
 
     // Displays party creation page via party.html template
     @RequestMapping(value="/party/create", method= RequestMethod.GET)
-    public String displayPartyTemplate() { return "party"; }
+    public String displayPartyTemplate(Model model) {
+
+        model.addAttribute("update", false);
+        return "party";
+    }
 
     // Creates a party from the creation page via party.html template
     @RequestMapping(value="/party/create", method= RequestMethod.POST)
@@ -67,12 +71,22 @@ public class PartyContoller {
     }
 
     // Displays XISBI update section in the party creation page via party.html template
-    @RequestMapping(value="/party/{id}/update", method= RequestMethod.POST)
+    @RequestMapping(value="/party/{id}/update", method= RequestMethod.PUT)
     public String updateParty(
             @PathVariable long id,
-            Model model) {
+            Model model, @RequestParam String partyTitle,
+            @RequestParam String partyTime,
+            @RequestParam String partyDate,
+            @RequestParam String partyLocation,
+            @RequestParam String partyDescription) {
+
+        Optional<Party> partyOptional = partyRepo.findById(id);
+        Party partyToUpdate = partyRepo.findById(id).get();
 
         // TODO: IF statement required to check if the party exists
+        partyToUpdate.updateParty(partyTitle, partyTime, partyDate, partyLocation, partyDescription);
+        partyRepo.save(partyToUpdate);
+
         model.addAttribute("party", partyRepo.findById(id).get());
         model.addAttribute("update", true);
         return "party";
@@ -84,17 +98,26 @@ public class PartyContoller {
             @PathVariable long id){
 //  TODO: Check DB for the user, add user to party guest list, add party to attending list
 
-//  find the guest by username
+        //  find the guest by username
         XisbiUser guest = userRepo.findByUsername(guestUsername);
-        System.out.println(guest);
-//  add guest to the party by their ID
+        //  add guest to the party by their ID
         Party party = partyRepo.findById(id).get();
-        System.out.println(party);
-//  add to guest list and then save to party repo
+        //  add to guest list and then save to party repo
         party.guestList.add(guest);
         partyRepo.save(party);
 
         return new RedirectView("/party/"+ id + "/update");
+    }
+
+    // Displays a specific version of party page via oneParty.html template
+    @RequestMapping(value="/party/{id}", method= RequestMethod.GET)
+    public String viewAParty(
+            @PathVariable long id,
+            Model model) {
+
+        // TODO: IF statement required to check if the party exists
+        model.addAttribute("party", partyRepo.findById(id).get());
+        return "oneParty";
     }
 
 
