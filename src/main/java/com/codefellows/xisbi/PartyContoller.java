@@ -25,7 +25,11 @@ public class PartyContoller {
 
     // Displays party creation page via party.html template
     @RequestMapping(value="/party/create", method= RequestMethod.GET)
-    public String displayPartyTemplate() { return "party"; }
+    public String displayPartyTemplate(Model model) {
+
+        model.addAttribute("update", false);
+        return "party";
+    }
 
     // Creates a party from the creation page via party.html template
     @RequestMapping(value="/party/create", method= RequestMethod.POST)
