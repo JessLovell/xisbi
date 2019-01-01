@@ -60,7 +60,7 @@ public class PartyContoller {
         model.addAttribute("update", false);
 
         // redirect user to the party update page once a party is created
-        return new RedirectView("/party/" + newParty.id + "/update");
+        return new RedirectView("/party/" + newParty.id);
     }
 
     // Displays update version of party creation page via party.html template
@@ -77,7 +77,7 @@ public class PartyContoller {
 
     // Displays XISBI update section in the party creation page via party.html template
     @RequestMapping(value="/party/{id}/update", method= RequestMethod.PUT)
-    public String updateParty(
+    public RedirectView updateParty(
             @PathVariable long id,
             Model model, @RequestParam String partyTitle,
             @RequestParam String partyTime,
@@ -93,8 +93,7 @@ public class PartyContoller {
         partyRepo.save(partyToUpdate);
 
         model.addAttribute("party", partyRepo.findById(id).get());
-        model.addAttribute("update", true);
-        return "party";
+        return new RedirectView("/party/"+ id);
     }
 
     @RequestMapping(value ="/party/{id}/add-guest", method = RequestMethod.POST)
@@ -116,19 +115,21 @@ public class PartyContoller {
         guest.attending.add(party);
         userRepo.save(guest);
 
-        return new RedirectView("/party/"+ id + "/update");
+        return new RedirectView("/party/"+ id);
     }
 
     // Displays a specific version of party page via oneParty.html template
     @RequestMapping(value="/party/{id}", method= RequestMethod.GET)
     public String viewAParty(
             @PathVariable long id,
-            Model model) {
+            Model model, Principal p) {
+
+        Party party = partyRepo.findById(id).get();
+        XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
         // TODO: IF statement required to check if the party exists
-        model.addAttribute("party", partyRepo.findById(id).get());
+        model.addAttribute("party", party);
+        model.addAttribute("host", Auth.isHost(current, party));
         return "oneParty";
     }
-
-
 }
