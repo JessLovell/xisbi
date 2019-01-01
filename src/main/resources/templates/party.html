@@ -84,13 +84,18 @@
                    name="partyDescription" th:value="${party.partyDescription}">
         </div>
 
-        <button type="submit" class="btn btn-success">Update Party</button>
+        <button type="submit" class="btn btn-success">Update Party Details</button>
     </form>
 
 
     <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">
         <div class="form-group">
-            <label>Please Add Guest(s) to your Party</label>
+            <div th:if="party.guestList != null">
+                <p th:each="guest : ${party.guestList}">Invited Guests:
+                    <span th:text="${guest.username}"> </span>
+                </p>
+            </div>
+            <label>Invite Guests to your Event</label>
             <input type="text" class="form-control" id="guestUsername" aria-describedby="guestHelp"
                    name="guestUsername">
             <small id="guestHelp" class="form-text text-muted">Please use a guest's username when adding them to your party
@@ -98,6 +103,11 @@
         </div>
 
         <button type="submit" class="btn btn-success">Add Guest</button>
+    </form>
+
+    <br>
+    <form th:action="${'/party/' + party.id}" th:method="GET" >
+        <button type="submit" class="btn btn-success">Complete ></button>
     </form>
 </div>
 

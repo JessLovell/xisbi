@@ -83,9 +83,6 @@ public class PartyContoller {
         Optional<Party> partyOptional = partyRepo.findById(id);
         Party partyToUpdate = partyRepo.findById(id).get();
 
-//        if (!partyOptional.isPresent()){
-//            return "error";
-//        }
         // TODO: IF statement required to check if the party exists
         partyToUpdate.updateParty(partyTitle, partyTime, partyDate, partyLocation, partyDescription);
         partyRepo.save(partyToUpdate);
@@ -101,17 +98,26 @@ public class PartyContoller {
             @PathVariable long id){
 //  TODO: Check DB for the user, add user to party guest list, add party to attending list
 
-//  find the guest by username
+        //  find the guest by username
         XisbiUser guest = userRepo.findByUsername(guestUsername);
-        System.out.println(guest);
-//  add guest to the party by their ID
+        //  add guest to the party by their ID
         Party party = partyRepo.findById(id).get();
-        System.out.println(party);
-//  add to guest list and then save to party repo
+        //  add to guest list and then save to party repo
         party.guestList.add(guest);
         partyRepo.save(party);
 
         return new RedirectView("/party/"+ id + "/update");
+    }
+
+    // Displays a specific version of party page via oneParty.html template
+    @RequestMapping(value="/party/{id}", method= RequestMethod.GET)
+    public String viewAParty(
+            @PathVariable long id,
+            Model model) {
+
+        // TODO: IF statement required to check if the party exists
+        model.addAttribute("party", partyRepo.findById(id).get());
+        return "oneParty";
     }
 
 
