@@ -37,7 +37,7 @@
         <h3>Events you are hosting:</h3>
         <div th:if="${user.hosting != null}">
             <ul th:each="party : ${user.hosting}">
-                <li th:text="${party.partyTitle}"></li>
+                <a th:href="${'/party/' + party.id}" ><li th:text="${party.partyTitle}"></li></a>
             </ul>
         </div>
         <div th:if="${user.hosting == null || user.hosting.size() == 0}">
@@ -48,7 +48,7 @@
         <h3>Events you are invited to:</h3>
         <div th:if="${user.attending != null}">
             <ul th:each="party : ${user.attending}">
-                <li th:text="${party.partyTitle}"></li>
+                <a th:href="${'/party/' + party.id}" ><li th:text="${party.partyTitle}"></li></a>
             </ul>
         </div>
         <div th:if="${user.attending == null || user.attending.size() == 0}">

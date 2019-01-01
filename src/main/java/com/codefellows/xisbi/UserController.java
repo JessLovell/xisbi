@@ -71,8 +71,7 @@ public class UserController {
     public String displayMyDashboard(Principal p, Model model) {
 
         XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
-        model.addAttribute("user", current);
-        System.out.println(current.attending.size());
+        model.addAttribute("user", userRepo.findById(current.id).get());
 
         return "my-dashboard";
     }
