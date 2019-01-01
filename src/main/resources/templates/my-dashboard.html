@@ -28,9 +28,23 @@
     <span th:text="${user.partyInterests}"></span>
 </div>
 
-<form action="/party/create" method="GET">
-    <button type="submit" class="btn btn-success">Host a Party</button>
-</form>
+    <form action="/party/create" method="GET">
+        <button type="submit" class="btn btn-success">Host an Event</button>
+    </form>
+
+<div>
+    <div>
+        <h3>Events you are hosting:</h3>
+        <div th:if="${}">
+            <ul th:each="${}">
+
+            </ul>
+        </div>
+    </div>
+    <div>
+        <h3>Events you are invited to:</h3>
+    </div>
+</div>
 
 </body>
 </html>
