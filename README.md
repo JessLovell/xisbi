@@ -29,7 +29,8 @@ Day 3: Errors and CSS
 * Added CSS
 * Deployed to Heroku
 * Created About Us
-* Username displays on Nav
+* Username displays on Nav If logged in 
+*
 
 
 ## Instructions for Use
@@ -43,6 +44,7 @@ Heroku site: https://xisbi.herokuapp.com/
 * [Spring PUT/DELETE methods](https://stackoverflow.com/questions/24256051/delete-or-put-methods-in-thymeleaf)
 * [LazyEager Fetchtype](https://stackoverflow.com/questions/2990799/difference-between-fetchtype-lazy-and-eager-in-java-persistence-api)
 * [Spring Error Handler](https://www.baeldung.com/exception-handling-for-rest-with-spring)
+* [Spring UPDATE/DELETE](http://www.springboottutorial.com/spring-boot-crud-rest-service-with-jpa-hibernate)
 
 
 ## Creators
