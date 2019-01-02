@@ -10,6 +10,7 @@
 <body>
 <div class = "container">
     <h1>Please Login</h1>
+    <p th:if = "${loginError == true}" class = "error">Wrong username or password.</p>
 
     <form action="/perform_login" method="POST">
     <div class="form-group">
