@@ -25,8 +25,9 @@ public class PartyContoller {
 
     // Displays party creation page via party.html template
     @RequestMapping(value="/party/create", method= RequestMethod.GET)
-    public String displayPartyTemplate(Model model) {
-
+    public String displayPartyTemplate(Model model, Principal p) {
+        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+        model.addAttribute("user", userRepo.findById(user.id).get());
         model.addAttribute("update", false);
         return "party";
     }
@@ -67,7 +68,9 @@ public class PartyContoller {
     @RequestMapping(value="/party/{id}/update", method= RequestMethod.GET)
     public String displayUpdateTemplate(
             @PathVariable long id,
-            Model model) {
+            Model model, Principal p) {
+            XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+            model.addAttribute("user", userRepo.findById(user.id).get());
 
         // TODO: IF statement required to check if the party exists
         model.addAttribute("party", partyRepo.findById(id).get());
@@ -123,12 +126,12 @@ public class PartyContoller {
     public String viewAParty(
             @PathVariable long id,
             Model model, Principal p) {
-
         Party party = partyRepo.findById(id).get();
         XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
         // TODO: IF statement required to check if the party exists
         model.addAttribute("party", party);
+        model.addAttribute("user", userRepo.findById(current.id).get());
         model.addAttribute("host", Auth.isHost(current, party));
         return "oneParty";
     }
