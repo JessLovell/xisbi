@@ -1,15 +1,14 @@
 package com.codefellows.xisbi;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.Part;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -25,8 +24,9 @@ public class PartyContoller {
 
     // Displays party creation page via party.html template
     @RequestMapping(value="/party/create", method= RequestMethod.GET)
-    public String displayPartyTemplate(Model model) {
-
+    public String displayPartyTemplate(Model model, Principal p) {
+        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+        model.addAttribute("user", userRepo.findById(user.id).get());
         model.addAttribute("update", false);
         return "party";
     }
@@ -46,7 +46,6 @@ public class PartyContoller {
                 partyTitle, partyTime, partyDate, partyLocation, partyDescription
         );
 
-        // TODO: Add OPTIONAL to ensure that current user is not empty
         XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
         newParty.partyHost = userRepo.findById(current.id).get();
@@ -54,7 +53,6 @@ public class PartyContoller {
         partyRepo.save(newParty);
 
         current.hosting.add(newParty);
-//        newParty.partyHost.hosting.add(newParty);
         userRepo.save(current);
 
         model.addAttribute("update", false);
@@ -67,12 +65,18 @@ public class PartyContoller {
     @RequestMapping(value="/party/{id}/update", method= RequestMethod.GET)
     public String displayUpdateTemplate(
             @PathVariable long id,
-            Model model) {
+            Model model, Principal p) {
+        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
-        // TODO: IF statement required to check if the party exists
-        model.addAttribute("party", partyRepo.findById(id).get());
-        model.addAttribute("update", true);
-        return "party";
+        if (partyRepo.findById(id).isPresent()){
+            model.addAttribute("user", userRepo.findById(user.id).get());
+            model.addAttribute("party", partyRepo.findById(id).get());
+            model.addAttribute("update", true);
+
+            return "party";
+        }else {
+            throw new PartyNotFoundException("Event does not exist");
+        }
     }
 
     // Displays XISBI update section in the party creation page via party.html template
@@ -88,7 +92,6 @@ public class PartyContoller {
         Optional<Party> partyOptional = partyRepo.findById(id);
         Party partyToUpdate = partyRepo.findById(id).get();
 
-        // TODO: IF statement required to check if the party exists
         partyToUpdate.updateParty(partyTitle, partyTime, partyDate, partyLocation, partyDescription);
         partyRepo.save(partyToUpdate);
 
@@ -100,7 +103,6 @@ public class PartyContoller {
     public RedirectView updateGuestList(
             @RequestParam String guestUsername,
             @PathVariable long id){
-//  TODO: Check DB for the user, add user to party guest list, add party to attending list
 
         //  find the guest by username
         XisbiUser guest = userRepo.findByUsername(guestUsername);
@@ -123,13 +125,27 @@ public class PartyContoller {
     public String viewAParty(
             @PathVariable long id,
             Model model, Principal p) {
+        if (partyRepo.findById(id).isPresent()){
+            Party party = partyRepo.findById(id).get();
+            XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
-        Party party = partyRepo.findById(id).get();
-        XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+            model.addAttribute("party", party);
+            model.addAttribute("user", userRepo.findById(current.id).get());
+            model.addAttribute("host", Auth.isHost(current, party));
+            return "oneParty";
+        }else{
+            throw new PartyNotFoundException("Event does not exist");
+        }
+    }
 
-        // TODO: IF statement required to check if the party exists
-        model.addAttribute("party", party);
-        model.addAttribute("host", Auth.isHost(current, party));
-        return "oneParty";
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    class PartyNotFoundException extends RuntimeException{
+
+        public PartyNotFoundException(){
+            super();
+        }
+        public PartyNotFoundException(String message){
+            super(message);
+        }
     }
 }

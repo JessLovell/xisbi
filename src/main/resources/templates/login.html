@@ -5,11 +5,12 @@
     <title>XISBI Login</title>
 </head>
 <header>
-    <div th:replace="~{common :: nav-bar}"></div>
+    <div th:replace="~{common :: nav-bar(${user})}"></div>
 </header>
 <body>
 <div class = "container">
     <h1>Please Login</h1>
+    <p th:if = "${loginError == true}" class = "error">Wrong username or password.</p>
 
     <form action="/perform_login" method="POST">
     <div class="form-group">
