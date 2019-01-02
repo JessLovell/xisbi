@@ -29,8 +29,8 @@ public class UserController {
     @RequestMapping(value="/", method= RequestMethod.GET)
     public String displayIndexTemplate(Model model, Principal p) {
 
-        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
+        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
         if (userRepo.findById(user.id).isPresent()) {
             model.addAttribute("user", userRepo.findById(user.id).get());
         } else {
