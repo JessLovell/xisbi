@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{common :: head}"></div>
+    <title th:text="${party.partyTitle}"></title>
+</head>
+<header>
+    <div th:replace="~{common :: nav-bar}"></div>
+</header>
+<body>
+    <div th:if="${host}">
+        <form th:action="${'/party/' + party.id + '/update'}" th:method="GET">
+            <button type="submit" class="btn btn-success">Update this Event</button>
+        </form>
+    </div>
+    <div class="container">
+        <h2 th:text="${party.partyTitle}"></h2>
+        <h3>Hosted by<span th:text="${party.partyHost.firstName}"></span></h3>
+        <p>Date/Time: <span th:text="${party.partyDate}"></span> at <span th:text="${party.partyTime}"></span></p>
+        <p>Location: <span th:text="${party.partyLocation}"></span></p>
+        <p>Description: <span th:text="${party.partyDescription}"></span></p>
+        <p>Guest List:
+            <div th:if="party.guestList != null">
+                <p th:each="guest : ${party.guestList}">
+                    <span th:text="${guest.username}"> </span>
+                </p>
+            </div>
+        </p>
+    </div>
+    <div th:if="${host}">
+        <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">
+            <div class="form-group">
+
+                <label>Invite Guests to your Event</label>
+                <input type="text" class="form-control" id="guestUsername" aria-describedby="guestHelp"
+                       name="guestUsername">
+                <small id="guestHelp" class="form-text text-muted">Please use a guest's username when adding them to your party
+                </small>
+            </div>
+
+            <button type="submit" class="btn btn-success">Add Guest</button>
+        </form>
+    </div>
+
+</body>
+</html>
