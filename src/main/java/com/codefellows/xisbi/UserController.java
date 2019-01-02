@@ -48,13 +48,17 @@ public class UserController {
     @RequestMapping(value="/signup", method= RequestMethod.GET)
     public String displaySignupTemplate(Model model, Principal p) {
 
-        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
-
-        if (userRepo.findById(user.id).isPresent()) {
-            model.addAttribute("user", userRepo.findById(user.id).get());
-        } else {
+        if(p != null){
+            XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+            if (userRepo.findById(user.id).isPresent()) {
+                model.addAttribute("user", userRepo.findById(user.id).get());
+            } else {
+                model.addAttribute("user", false);
+            }
+        } else{
             model.addAttribute("user", false);
         }
+
         return "signup";
     }
 
@@ -85,13 +89,18 @@ public class UserController {
     @RequestMapping(value="/login", method= RequestMethod.GET)
     public String displayLoginTemplate(Model model, Principal p) {
 
-        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+        if(p != null){
+            XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
-        if (userRepo.findById(user.id).isPresent()) {
-            model.addAttribute("user", userRepo.findById(user.id).get());
+            if (userRepo.findById(user.id).isPresent()) {
+                model.addAttribute("user", userRepo.findById(user.id).get());
+            } else {
+                model.addAttribute("user", false);
+            }
         } else {
             model.addAttribute("user", false);
         }
+
         return "login";
     }
 
@@ -106,9 +115,14 @@ public class UserController {
     // Displays a XISBI user's own dashboard via my-my-dashboard.html template
     @RequestMapping(value="/my-dashboard", method= RequestMethod.GET)
     public String displayMyDashboard(Principal p, Model model) {
-        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
-        if (userRepo.findById(user.id).isPresent()) {
-            model.addAttribute("user", userRepo.findById(user.id).get());
+
+        if(p != null){
+            XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+            if (userRepo.findById(user.id).isPresent()) {
+                model.addAttribute("user", userRepo.findById(user.id).get());
+            } else {
+                model.addAttribute("user", false);
+            }
         } else {
             model.addAttribute("user", false);
         }
