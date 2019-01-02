@@ -17,21 +17,23 @@
 </div>
 
 <!-- Template fragment for HEADER NAVBAR buttons -->
-<div th:fragment="nav-bar">
+<div th:fragment="nav-bar (user)">
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
             <img src="/img/xisbi_header_logo.png" width="30" height="30" alt="">
         </a>
+        <div th:if = "${user == false}">
+            <button type="submit" class="btn btn-success"><a href="/">About</a></button>
+            <button type="submit" class="btn btn-success"><a href="/login">Login</a></button>
+            <button type="submit" class="btn btn-success"><a href="/signup">Sign Up</a></button>
+        </div>
 
-        <button type="submit" class="btn btn-success"><a href="/">Home</a></button>
-
-        <button type="submit" class="btn btn-success"><a href="/login">Login</a></button>
-
-        <button type="submit" class="btn btn-success"><a href="/signup">Sign Up</a></button>
-
-        <button type="submit" class="btn btn-success"><a href="/my-dashboard">Dashboard</a></button>
-
-        <button type="submit" class="btn btn-success"><a href="/perform_logout">Logout</a></button>
+        <div th:if = "${user}">
+            <p th:text = "${user.username}"></p>
+            <button type="submit" class="btn btn-success"><a href="/">About</a></button>
+            <button type="submit" class="btn btn-success"><a href="/my-dashboard">Dashboard</a></button>
+            <button type="submit" class="btn btn-success"><a href="/perform_logout">Logout</a></button>
+        </div>
     </nav>
 </div>
 

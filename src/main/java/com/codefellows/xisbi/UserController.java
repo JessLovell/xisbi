@@ -27,13 +27,26 @@ public class UserController {
 
     // Displays XISBI homepage via index.html template
     @RequestMapping(value="/", method= RequestMethod.GET)
-    public String displayIndexTemplate() {
+    public String displayIndexTemplate(Model model, Principal p) {
+        if (p == null) {
+            model.addAttribute("user", false);
+        } else {
+            XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+            model.addAttribute("user", userRepo.findById(user.id).get());
+        }
         return "index";
     }
 
+
     // Displays XISBI signup via signup.html template
     @RequestMapping(value="/signup", method= RequestMethod.GET)
-    public String displaySignupTemplate() {
+    public String displaySignupTemplate(Model model, Principal p) {
+        if (p == null) {
+            model.addAttribute("user", false);
+        } else {
+            XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+            model.addAttribute("user", userRepo.findById(user.id).get());
+        }
         return "signup";
     }
 
@@ -62,17 +75,33 @@ public class UserController {
 
     // Displays XISBI login via login.html template
     @RequestMapping(value="/login", method= RequestMethod.GET)
-    public String displayLoginTemplate() {
+    public String displayLoginTemplate(Model model, Principal p) {
+        if (p == null) {
+            model.addAttribute("user", false);
+        } else {
+            XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+            model.addAttribute("user", userRepo.findById(user.id).get());
+        }
+        return "login";
+    }
+
+    @RequestMapping(value = "/login-error", method = RequestMethod.GET)
+    public String loginError(Model model){
+        model.addAttribute("loginError",true);
+        model.addAttribute("user", false);
+
         return "login";
     }
 
     // Displays a XISBI user's own dashboard via my-my-dashboard.html template
     @RequestMapping(value="/my-dashboard", method= RequestMethod.GET)
     public String displayMyDashboard(Principal p, Model model) {
-
-        XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
-        model.addAttribute("user", userRepo.findById(current.id).get());
-
+        if (p == null) {
+            model.addAttribute("user", false);
+        } else {
+            XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+            model.addAttribute("user", userRepo.findById(user.id).get());
+        }
         return "my-dashboard";
     }
 }
