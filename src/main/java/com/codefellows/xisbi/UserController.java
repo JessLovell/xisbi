@@ -28,10 +28,17 @@ public class UserController {
     // Displays XISBI homepage via index.html template
     @RequestMapping(value="/", method= RequestMethod.GET)
     public String displayIndexTemplate(Model model, Principal p) {
-        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
-        if (userRepo.findById(user.id).isPresent()) {
-            model.addAttribute("user", userRepo.findById(user.id).get());
-        }else{model.addAttribute("user", false);
+
+        if (p != null) {
+            XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+            if (userRepo.findById(user.id).isPresent()) {
+                model.addAttribute("user", userRepo.findById(user.id).get());
+            }
+            else {
+                model.addAttribute("user", false);
+            }
+        }else {
+            model.addAttribute("user", false);
         }
         return "index";
     }

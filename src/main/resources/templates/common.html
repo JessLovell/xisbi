@@ -20,8 +20,9 @@
 <div th:fragment="nav-bar (user)">
     <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" href="/">
-            <img src="/img/xisbi_header_logo.png" width="30" height="30" alt="">
+            <img src="/img/xisbi_header_logo.png" width="250" height="110" alt="">
         </a>
+
         <div th:if = "${user == false}">
             <button type="submit" class="btn btn-success"><a href="/">About</a></button>
             <button type="submit" class="btn btn-success"><a href="/login">Login</a></button>
