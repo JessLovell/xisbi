@@ -23,6 +23,15 @@ Day 2: Party: model,controller, party template, permissions(host,attending)
 * Linked guest to party
 * Created party template
 
+Day 3: Errors and CSS
+* Completed TODO's left on partyController
+* Error handling: login message
+* Added CSS
+* Deployed to Heroku
+* Created About Us
+* Username displays on Nav
+
+
 ## Instructions for Use
 Heroku site: https://xisbi.herokuapp.com/
 
@@ -32,6 +41,8 @@ Heroku site: https://xisbi.herokuapp.com/
 * [Spring Initializr](https://start.spring.io/) with dependencies web, thymeleaf, devTools, postgreSQL, JPA, Security.
 * [Spring Auth Cheat Sheet](https://github.com/codefellows/seattle-java-401d2/blob/master/SpringAuthCheatSheet.md)
 * [Spring PUT/DELETE methods](https://stackoverflow.com/questions/24256051/delete-or-put-methods-in-thymeleaf)
+* [LazyEager Fetchtype](https://stackoverflow.com/questions/2990799/difference-between-fetchtype-lazy-and-eager-in-java-persistence-api)
+* [Spring Error Handler](https://www.baeldung.com/exception-handling-for-rest-with-spring)
 
 
 ## Creators
