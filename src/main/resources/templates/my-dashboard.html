@@ -11,6 +11,8 @@
 
 <h1>Welcome to Your Dashboard</h1>
 
+<p th:if = "${deleteMessage == true}" class = "error">Event has been deleted.</p>
+
 <label>Username</label>
 <h3 th:text="${user.username}">username</h3>
 <img src="/img/default_user_image.png" alt="user image" class="img-thumbnail"/>

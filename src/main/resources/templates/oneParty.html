@@ -28,8 +28,10 @@
         </p>
     </div>
     <div th:if="${host}">
+        <p th:if = "${userNotFound}" class = "error">User not found</p>
         <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">
             <div class="form-group">
+
 
                 <label>Invite Guests to your Event</label>
                 <input type="text" class="form-control" id="guestUsername" aria-describedby="guestHelp"
