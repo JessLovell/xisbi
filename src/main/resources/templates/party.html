@@ -86,6 +86,10 @@
 
         <button type="submit" class="btn btn-success">Update Party Details</button>
     </form>
+
+    <form th:action="${'/party/' + party.id}" th:method="DELETE">
+        <button type="submit" class="btn btn-success">Delete Event</button>
+    </form>
 </div>
 
 </body>
