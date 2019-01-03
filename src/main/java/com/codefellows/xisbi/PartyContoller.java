@@ -120,6 +120,22 @@ public class PartyContoller {
         return new RedirectView("/party/"+ id);
     }
 
+    @RequestMapping(value="/party/{id}/delete-guest", method=RequestMethod.PUT)
+    public RedirectView deleteGuestFromParty(@PathVariable long id,
+                                             @RequestParam String guestUsername){
+
+        System.out.println(guestUsername);
+        XisbiUser guestToRemove = userRepo.findByUsername(guestUsername);
+        Party party = partyRepo.findById(id).get();
+        party.guestList.remove(guestToRemove);
+//        guestToRemove.attending.remove(party);
+        partyRepo.save(party);
+//        userRepo.save(guestToRemove);
+
+        return new RedirectView("/party/"+ id);
+
+    }
+
     // Deletes a specific version of party page via party.html template
     @RequestMapping(value="/party/{id}", method= RequestMethod.DELETE)
     public RedirectView deleteAParty(@PathVariable long id){
@@ -146,7 +162,7 @@ public class PartyContoller {
             model.addAttribute("user", userRepo.findById(current.id).get());
             model.addAttribute("host", Auth.isHost(current, party));
             return "oneParty";
-        }else{
+        } else {
             throw new PartyNotFoundException("Event does not exist");
         }
     }
