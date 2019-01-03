@@ -110,7 +110,7 @@ public class PartyContoller {
             model.addAttribute("userNotFound", true);
             model.addAttribute("user", userRepo.findById(user.id).get());
             model.addAttribute("update", true);
-            model.addAttribute("host", Auth.isHost(userRepo.findById(id).get(), party));
+            model.addAttribute("host", Auth.isHost(user, party));
 
 
         }else{throw new PartyNotFoundException("Event does not exist");}
