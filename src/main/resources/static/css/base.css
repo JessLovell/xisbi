@@ -1,0 +1,30 @@
+body {
+ background: url('/img/background.jpeg') no-repeat center center fixed;
+ -webkit-background-size: cover;
+ -moz-background-size: cover;
+ background-size: cover;
+ -o-background-size: cover;
+}
+
+/* NavBar styling*/
+.navbar:not(.top-nav-collapse) {
+  background: transparent !important;
+}
+
+.btn {
+    color: white;
+}
+
+.jumbotron{
+background: transparent !important;
+}
+
+p{
+color: white;
+}
+
+.solid{
+background-color: black;
+ opacity:0.5;
+
+}
