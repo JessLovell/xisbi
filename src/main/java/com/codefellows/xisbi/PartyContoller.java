@@ -120,6 +120,31 @@ public class PartyContoller {
         return new RedirectView("/party/"+ id);
     }
 
+    @RequestMapping(value="/party/{id}/delete-guest", method=RequestMethod.PUT)
+    public RedirectView deleteGuestFromParty(@PathVariable long id,
+                                             @RequestParam String guestUsername){
+
+        XisbiUser guestToRemove = userRepo.findByUsername(guestUsername);
+        Party party = partyRepo.findById(id).get();
+        party.guestList.remove(guestToRemove);
+        partyRepo.save(party);
+
+        return new RedirectView("/party/"+ id);
+    }
+
+    // Deletes a specific version of party page via party.html template
+    @RequestMapping(value="/party/{id}", method= RequestMethod.DELETE)
+    public RedirectView deleteAParty(@PathVariable long id){
+
+        Optional<Party> partyToDelete = partyRepo.findById(id);
+
+        if (partyToDelete.isPresent()) {
+            partyRepo.deleteById(id);
+        }
+
+        return new RedirectView("/my-dashboard");
+    }
+
     // Displays a specific version of party page via oneParty.html template
     @RequestMapping(value="/party/{id}", method= RequestMethod.GET)
     public String viewAParty(
@@ -133,11 +158,13 @@ public class PartyContoller {
             model.addAttribute("user", userRepo.findById(current.id).get());
             model.addAttribute("host", Auth.isHost(current, party));
             return "oneParty";
-        }else{
+        } else {
             throw new PartyNotFoundException("Event does not exist");
         }
     }
 
+
+    //Error message for parties
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     class PartyNotFoundException extends RuntimeException{
 
