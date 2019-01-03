@@ -8,23 +8,25 @@ body {
 
 /* NavBar styling*/
 .navbar:not(.top-nav-collapse) {
-  background: transparent !important;
+    background: transparent !important;
 }
 
 .btn {
     color: white;
 }
 
-.jumbotron{
-background: transparent !important;
+.jumbotron {
+    margin: auto;
+    background-color: black;
+    opacity:0.5;
+/* background: transparent !important; */
 }
 
-p{
-color: white;
+p {
+    color: white;
 }
 
-.solid{
-background-color: black;
- opacity:0.5;
-
+.solid {
+    background-color: black;
+    opacity:0.5;
 }
