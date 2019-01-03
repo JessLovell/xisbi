@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
+<!-- HEAD FRAGMENT -->
 <head>
     <div th:replace="~{common :: head}"></div>
     <title>XISBI Homepage</title>
 </head>
+
+<!-- NAVBAR FRAGMENT -->
 <header>
     <div th:replace="~{common :: nav-bar(${user})}"></div>
 </header>
 <body>
+
 <!--LOGO SECTION-->
 <div class="container">
+<<<<<<< HEAD
     <div class="jumbotron">
         <div class="jumbotron text-center">
             <img src="/img/xisbi_full_logo_3x.png">
@@ -30,6 +36,26 @@
     </div>
     <div class="row">
 
+=======
+    <div class="text-center">
+        <img src="/img/xisbi_full_logo_2x.png" alt="XISBI LOGO">
+        <h2>Come Join the Party!</h2>
+        <a href="/login">
+            <button type="submit" class="btn btn-outline-success">Login</button>
+        </a>
+        <a href="/signup"> 
+            <button type="submit" class="btn btn-outline-success">Sign Up</button>
+        </a>
+    </div>
+</div>
+
+<!--XISBI INFO SECTION-->
+<div class="container">
+    <div class="text-center">
+        <h1>Plan a party in three steps</h1>
+    </div>
+    <div class="row">
+>>>>>>> f28a0879a730aa0385dd097ea196265be8314deb
         <div class="col-sm-4">
             <i class="fas fa-user-check"></i>
             <h3>Join Xisbi</h3>
@@ -59,15 +85,25 @@
     <div class="row">
         <div class="col-sm-3">
             <img src="https://via.placeholder.com/250x300.png?text=IMAGE">
+<<<<<<< HEAD
             <h3>ZAHRA MOHAMED</h3>
             <p>Zahra Mohamed is self-directed and motivated multi-cultural professional with a background in chemical
                 engineering and biochemistry.</p>
             <p>Her core goal in life is to be in a constant state of learning</p>
+=======
+            <h3>Zahra Mohamed</h3>
+            <p>Zahra Mohamed is self-directed and motivated multi-cultural professional with a background in chemical
+                engineering and biochemistry.<br><br>Her core goal in life is to be in a constant state of learning</p>
+>>>>>>> f28a0879a730aa0385dd097ea196265be8314deb
         </div>
         <div class="col-sm-3">
             <img src="https://via.placeholder.com/250x300.png?text=IMAGE">
             <div class="solid">
+<<<<<<< HEAD
                 <h3>DAVE MUENCH</h3>
+=======
+                <h3>Dave Muench</h3>
+>>>>>>> f28a0879a730aa0385dd097ea196265be8314deb
                 <p>When he's not busy flying around the world, stopping nefarious terrorist organizations and ruthless
                     state actors for "The Feds," Dave can be found furiously hacking away at a laptop - usually with one
                     of four cats trying to sleep on his keyboard - writing grand and unreasonably dramatic storylines to
@@ -76,7 +112,11 @@
         </div>
         <div class="col-sm-3">
             <img src="https://via.placeholder.com/250x300.png?text=IMAGE">
+<<<<<<< HEAD
             <h3>KEVIN ROSALES</h3>
+=======
+            <h3>Kevin Rosales</h3>
+>>>>>>> f28a0879a730aa0385dd097ea196265be8314deb
             <p>Kevin Rosales is a young Software Developer from the Greater Seattle area. He Gained his interest in tech
                 when he was 16 and successfully built his computer. After that he was hooked and determined to learn
                 more about technology. Currently he is learning Java to further his knowledge in software
@@ -84,12 +124,20 @@
         </div>
         <div class="col-sm-3">
             <img src="https://via.placeholder.com/250x300.png?text=IMAGE">
+<<<<<<< HEAD
             <h3>JESSICA LOVELL</h3>
             <p>Born and raised deep in the heart of Texas, Jessica is a full-stack javascript software developer based
                 in Seattle.</p>
 
             <p>Her background in mathematics and love for guiding tourists inspires her passion for justice and ice
                 cream and is looking for opportunities to develop her skills in cyber security and cryptography.</p>
+=======
+            <h3>Jessica Lovell</h3>
+            <p>Born and raised deep in the heart of Texas, Jessica is a full-stack javascript software developer based
+                in Seattle.<br><br>Her background in mathematics and love for guiding tourists inspires her passion for
+                justice and ice cream and is looking for opportunities to develop her skills in cybersecurity and
+                cryptography.</p>
+>>>>>>> f28a0879a730aa0385dd097ea196265be8314deb
         </div>
     </div>
 </div>
