@@ -8,41 +8,56 @@
     <div th:replace="~{common :: nav-bar(${user})}"></div>
 </header>
 <body>
-    <div th:if="${host}">
-        <form th:action="${'/party/' + party.id + '/update'}" th:method="GET">
-            <button type="submit" class="btn btn-success">Update this Event</button>
+<div class="container">
+    <h2 th:text="${party.partyTitle}"></h2>
+    <h3>Hosted by<span th:text="${party.partyHost.firstName}"></span></h3>
+    <p>Date/Time: <span th:text="${party.partyDate}"></span> at <span th:text="${party.partyTime}"></span></p>
+    <p>Location: <span th:text="${party.partyLocation}"></span></p>
+    <p>Description: <span th:text="${party.partyDescription}"></span></p>
+    <p>Guest List:</p>
+    <div th:if="party.guestInvited != null">
+        <form th:each="guest : ${party.guestInvited}" th:action="${'/party/' + party.id + '/delete-guest'}"
+              th:method="PUT">
+            <span th:text="${guest.username}"></span>
+            <button th:if="${host || guest.username == user.username}" type="submit" class="btn btn-outline-success"
+                    name="guestUsername" th:value="${guest.username}"> Not Attending
+            </button>
+        </form>
+        <form th:each="guest : ${party.guestInvited}" th:action="${'/party/' + party.id + '/confirm'}" th:method="PUT">
+            <button th:if="${guest.username == user.username}" type="submit" class="btn btn-outline-success"
+                    name="guestUsername" th:value="${guest.username}"> Confirm Attendance
+            </button>
         </form>
     </div>
-    <div class="container">
-        <h2 th:text="${party.partyTitle}"></h2>
-        <h3>Hosted by<span th:text="${party.partyHost.firstName}"></span></h3>
-        <p>Date/Time: <span th:text="${party.partyDate}"></span> at <span th:text="${party.partyTime}"></span></p>
-        <p>Location: <span th:text="${party.partyLocation}"></span></p>
-        <p>Description: <span th:text="${party.partyDescription}"></span></p>
-        <p>Guest List:
-            <div th:if="party.guestList != null">
-                <form th:each="guest : ${party.guestList}" th:action="${'/party/' + party.id + '/delete-guest'}" th:method="PUT" >
-                    <span th:text="${guest.username}"></span> <button th:if="${host || guest.username == user.username}"type="submit" class="btn btn-success" name="guestUsername" th:value="${guest.username}" >-</button>
-                </form>
-            </div>
-        </p>
+    <div th:if="party.guestConfirmed != null">
+        <div th:each="guest : ${party.guestConfirmed}">
+            <span th:text="${guest.username}"></span>
+        </div>
     </div>
-    <div th:if="${host}">
-        <p th:if = "${userNotFound}" class = "error">User not found</p>
-        <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">
-            <div class="form-group">
 
+</div>
+<div th:if="${host}">
+    <p th:if = "${userNotFound}" class = "error">User not found</p>
 
-                <label>Invite Guests to your Event</label>
-                <input type="text" class="form-control" id="guestUsername" aria-describedby="guestHelp"
-                       name="guestUsername">
-                <small id="guestHelp" class="form-text text-muted">Please use a guest's username when adding them to your party
-                </small>
-            </div>
+    <form th:action="${'/party/' + party.id + '/update'}" th:method="GET">
+        <button type="submit" class="btn btn-success">Update this Event</button>
+    </form>
+</div>
+<div th:if="${host}">
+    <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">
+        <div class="form-group">
 
-            <button type="submit" class="btn btn-success">Add Guest</button>
-        </form>
-    </div>
+            <label>Invite Guests to your Event</label>
+            <input type="text" class="form-control" id="guestUsername" aria-describedby="guestHelp"
+                   name="guestUsername">
+            <small id="guestHelp" class="form-text text-muted">Please use a guest's username when adding them to your
+                party
+            </small>
+        </div>
+
+        <button type="submit" class="btn btn-success">Add Guest</button>
+    </form>
+</div>
 
 </body>
 </html>
