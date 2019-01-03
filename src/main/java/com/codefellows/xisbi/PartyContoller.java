@@ -120,6 +120,19 @@ public class PartyContoller {
         return new RedirectView("/party/"+ id);
     }
 
+    // Deletes a specific version of party page via party.html template
+    @RequestMapping(value="/party/{id}", method= RequestMethod.DELETE)
+    public RedirectView deleteAParty(@PathVariable long id){
+
+        Optional<Party> partyToDelete = partyRepo.findById(id);
+
+        if (partyToDelete.isPresent()) {
+            partyRepo.deleteById(id);
+        }
+
+        return new RedirectView("/my-dashboard");
+    }
+
     // Displays a specific version of party page via oneParty.html template
     @RequestMapping(value="/party/{id}", method= RequestMethod.GET)
     public String viewAParty(
@@ -138,6 +151,8 @@ public class PartyContoller {
         }
     }
 
+
+    //Error message for parties
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     class PartyNotFoundException extends RuntimeException{
 
