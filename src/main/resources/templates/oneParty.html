@@ -34,8 +34,11 @@
             <span th:text="${guest.username}"></span>
         </div>
     </div>
+
 </div>
 <div th:if="${host}">
+    <p th:if = "${userNotFound}" class = "error">User not found</p>
+
     <form th:action="${'/party/' + party.id + '/update'}" th:method="GET">
         <button type="submit" class="btn btn-success">Update this Event</button>
     </form>
