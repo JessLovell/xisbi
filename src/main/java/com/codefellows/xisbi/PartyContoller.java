@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.Part;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -99,23 +98,60 @@ public class PartyContoller {
         return new RedirectView("/party/"+ id);
     }
 
+    //message for User not found in database
+    @RequestMapping(value = "/party/{id}/user-not-found", method = RequestMethod.GET)
+    public String userNotFound(@PathVariable long id,Model model, Principal p){
+        XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
+
+        if (partyRepo.findById(id).isPresent()) {
+            Party party = partyRepo.findById(id).get();
+            model.addAttribute("party", party);
+            model.addAttribute("userNotFound", true);
+            model.addAttribute("user", userRepo.findById(user.id).get());
+            model.addAttribute("update", true);
+            model.addAttribute("host", Auth.isHost(user, party));
+
+
+        }else{throw new PartyNotFoundException("Event does not exist");}
+        return "oneParty";
+    }
+
     @RequestMapping(value ="/party/{id}/add-guest", method = RequestMethod.POST)
-    public RedirectView updateGuestList(
+    public RedirectView updateGuestInvited(
             @RequestParam String guestUsername,
-            @PathVariable long id){
+            @PathVariable long id) {
 
         //  find the guest by username
         XisbiUser guest = userRepo.findByUsername(guestUsername);
         //  add guest to the party by their ID
+        System.out.println(guest);
+        if (guest == null) {
+            return new RedirectView("/party/" + id + "/user-not-found");
+        }
+        else if (userRepo.findById(guest.id).isPresent()) {
+            Party party = partyRepo.findById(id).get();
+            //  add to guest list and then save to party repo
+            party.guestInvited.add(guest);
+            partyRepo.save(party);
+
+            //add party to user's invited set
+
+            guest.invited.add(party);
+            userRepo.save(guest);
+        }
+        return new RedirectView("/party/" + id);
+    }
+
+    @RequestMapping(value ="/party/{id}/confirm", method = RequestMethod.PUT)
+    public RedirectView updateGuestConfirmation(
+            @RequestParam String guestUsername,
+            @PathVariable long id){
+
+        XisbiUser guestToConfirm = userRepo.findByUsername(guestUsername);
         Party party = partyRepo.findById(id).get();
-
-        //  add to guest list and then save to party repo
-        party.guestList.add(guest);
+        party.guestInvited.remove(guestToConfirm);
+        party.guestConfirmed.add(guestToConfirm);
         partyRepo.save(party);
-
-        //add party to user's attending set
-        guest.attending.add(party);
-        userRepo.save(guest);
 
         return new RedirectView("/party/"+ id);
     }
@@ -126,7 +162,7 @@ public class PartyContoller {
 
         XisbiUser guestToRemove = userRepo.findByUsername(guestUsername);
         Party party = partyRepo.findById(id).get();
-        party.guestList.remove(guestToRemove);
+        party.guestInvited.remove(guestToRemove);
         partyRepo.save(party);
 
         return new RedirectView("/party/"+ id);
@@ -142,7 +178,17 @@ public class PartyContoller {
             partyRepo.deleteById(id);
         }
 
-        return new RedirectView("/my-dashboard");
+        return new RedirectView("/my-dashboard-delete-event");
+    }
+
+    //message for party deleted
+    @RequestMapping(value = "/my-dashboard-delete-event", method = RequestMethod.GET)
+    public String deleteMessage(Model model, Principal p){
+
+        model.addAttribute("deleteMessage",true);
+        model.addAttribute("user", ((UsernamePasswordAuthenticationToken) p).getPrincipal());
+
+        return "my-dashboard";
     }
 
     // Displays a specific version of party page via oneParty.html template
@@ -162,7 +208,6 @@ public class PartyContoller {
             throw new PartyNotFoundException("Event does not exist");
         }
     }
-
 
     //Error message for parties
     @ResponseStatus(value = HttpStatus.NOT_FOUND)

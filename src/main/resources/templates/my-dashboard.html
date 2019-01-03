@@ -11,6 +11,8 @@
 
 <h1>Welcome to Your Dashboard</h1>
 
+<p th:if = "${deleteMessage == true}" class = "error">Event has been deleted.</p>
+
 <label>Username</label>
 <h3 th:text="${user.username}">username</h3>
 <img src="/img/default_user_image.png" alt="user image" class="img-thumbnail"/>
@@ -46,13 +48,23 @@
     </div>
     <div>
         <h3>Events you are invited to:</h3>
-        <div th:if="${user.attending != null}">
-            <ul th:each="party : ${user.attending}">
+        <div th:if="${user.invited != null}">
+            <ul th:each="party : ${user.invited}">
                 <a th:href="${'/party/' + party.id}" ><li th:text="${party.partyTitle}"></li></a>
             </ul>
         </div>
-        <div th:if="${user.attending == null || user.attending.size() == 0}">
+        <div th:if="${user.invited == null || user.invited.size() == 0}">
             <p>No events at this time.</p>
+        </div>
+
+        <h3>Events you are confirmed to attend:</h3>
+        <div th:if="${user.confirmed != null}">
+            <ul th:each="party : ${user.confirmed}">
+                <a th:href="${'/party/' + party.id}" ><li th:text="${party.partyTitle}"></li></a>
+            </ul>
+        </div>
+        <div th:if="${user.confirmed == null || user.confirmed.size() == 0}">
+            <p>No confirmed events at this time.</p>
         </div>
     </div>
 </div>

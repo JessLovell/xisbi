@@ -24,8 +24,11 @@ public class XisbiUser implements UserDetails {
     public String dateOfBirth;
     public String partyInterests;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "guestList")
-    public Set<Party> attending;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "guestInvited")
+    public Set<Party> invited;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "guestConfirmed")
+    public Set<Party> confirmed;
 
     @OneToMany (fetch = FetchType.EAGER, mappedBy = "partyHost")
     public Set<Party> hosting;
