@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.Part;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -100,7 +99,7 @@ public class PartyContoller {
     }
 
     @RequestMapping(value ="/party/{id}/add-guest", method = RequestMethod.POST)
-    public RedirectView updateGuestList(
+    public RedirectView updateGuestInvited(
             @RequestParam String guestUsername,
             @PathVariable long id){
 
@@ -110,12 +109,26 @@ public class PartyContoller {
         Party party = partyRepo.findById(id).get();
 
         //  add to guest list and then save to party repo
-        party.guestList.add(guest);
+        party.guestInvited.add(guest);
         partyRepo.save(party);
 
-        //add party to user's attending set
-        guest.attending.add(party);
+        //add party to user's invited set
+        guest.invited.add(party);
         userRepo.save(guest);
+
+        return new RedirectView("/party/"+ id);
+    }
+
+    @RequestMapping(value ="/party/{id}/confirm", method = RequestMethod.PUT)
+    public RedirectView updateGuestConfirmation(
+            @RequestParam String guestUsername,
+            @PathVariable long id){
+
+        XisbiUser guestToConfirm = userRepo.findByUsername(guestUsername);
+        Party party = partyRepo.findById(id).get();
+        party.guestInvited.remove(guestToConfirm);
+        party.guestConfirmed.add(guestToConfirm);
+        partyRepo.save(party);
 
         return new RedirectView("/party/"+ id);
     }
@@ -126,7 +139,7 @@ public class PartyContoller {
 
         XisbiUser guestToRemove = userRepo.findByUsername(guestUsername);
         Party party = partyRepo.findById(id).get();
-        party.guestList.remove(guestToRemove);
+        party.guestInvited.remove(guestToRemove);
         partyRepo.save(party);
 
         return new RedirectView("/party/"+ id);
