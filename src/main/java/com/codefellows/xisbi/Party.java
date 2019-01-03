@@ -1,7 +1,6 @@
 package com.codefellows.xisbi;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,10 +20,18 @@ public class Party {
 
     @ManyToMany
     @JoinTable (
-            name = "guest_list",
+            name = "guest_invited",
             joinColumns = {@JoinColumn(name = "party_id")},
             inverseJoinColumns = {@JoinColumn(name = "guest_id")})
-    public Set<XisbiUser> guestList;
+    public Set<XisbiUser> guestInvited;
+
+    @ManyToMany
+    @JoinTable (
+            name = "guest_confirmed",
+            joinColumns = {@JoinColumn(name = "party_id")},
+            inverseJoinColumns = {@JoinColumn(name = "guest_id")})
+    public Set<XisbiUser> guestConfirmed;
+
 
     @ManyToOne
     public XisbiUser partyHost;
