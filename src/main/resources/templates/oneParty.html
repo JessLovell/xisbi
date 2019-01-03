@@ -22,7 +22,7 @@
         <p>Guest List:
             <div th:if="party.guestList != null">
                 <form th:each="guest : ${party.guestList}" th:action="${'/party/' + party.id + '/delete-guest'}" th:method="PUT" >
-                    <span th:text="${guest.username}"></span> <button type="submit" class="btn btn-success" name="guestUsername" th:value="${guest.username}" >-</button>
+                    <span th:text="${guest.username}"></span> <button th:if="${host || guest.username == user.username}"type="submit" class="btn btn-success" name="guestUsername" th:value="${guest.username}" >-</button>
                 </form>
             </div>
         </p>

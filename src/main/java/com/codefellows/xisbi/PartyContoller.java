@@ -124,16 +124,12 @@ public class PartyContoller {
     public RedirectView deleteGuestFromParty(@PathVariable long id,
                                              @RequestParam String guestUsername){
 
-        System.out.println(guestUsername);
         XisbiUser guestToRemove = userRepo.findByUsername(guestUsername);
         Party party = partyRepo.findById(id).get();
         party.guestList.remove(guestToRemove);
-//        guestToRemove.attending.remove(party);
         partyRepo.save(party);
-//        userRepo.save(guestToRemove);
 
         return new RedirectView("/party/"+ id);
-
     }
 
     // Deletes a specific version of party page via party.html template
