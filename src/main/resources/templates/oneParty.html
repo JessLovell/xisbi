@@ -9,54 +9,122 @@
 </header>
 <body>
 <div class="container">
-    <h2 th:text="${party.partyTitle}"></h2>
-    <h3>Hosted by<span th:text="${party.partyHost.firstName}"></span></h3>
-    <p>Date/Time: <span th:text="${party.partyDate}"></span> at <span th:text="${party.partyTime}"></span></p>
-    <p>Location: <span th:text="${party.partyLocation}"></span></p>
-    <p>Description: <span th:text="${party.partyDescription}"></span></p>
-    <p>Guest List:</p>
-    <div th:if="party.guestInvited != null">
-        <form th:each="guest : ${party.guestInvited}" th:action="${'/party/' + party.id + '/delete-guest'}"
-              th:method="PUT">
-            <span th:text="${guest.username}"></span>
-            <button th:if="${host || guest.username == user.username}" type="submit" class="btn btn-outline-success"
-                    name="guestUsername" th:value="${guest.username}"> Not Attending
-            </button>
-        </form>
-        <form th:each="guest : ${party.guestInvited}" th:action="${'/party/' + party.id + '/confirm'}" th:method="PUT">
-            <button th:if="${guest.username == user.username}" type="submit" class="btn btn-outline-success"
-                    name="guestUsername" th:value="${guest.username}"> Confirm Attendance
-            </button>
-        </form>
-    </div>
-    <div th:if="party.guestConfirmed != null">
-        <div th:each="guest : ${party.guestConfirmed}">
-            <span th:text="${guest.username}"></span>
-        </div>
-    </div>
+    <h2 th:text="${party.partyTitle}" class="justify-content-md-center"></h2>
 
-</div>
-<div th:if="${host}">
-    <p th:if = "${userNotFound}" class = "error">User not found</p>
+    <div class="row justify-content-md-center">
+        <div class="col-4 col-sm-6">
+            <div class="row justify-content-md-center">
+                <div class="col-4 col-sm-6">
+                    <div th:if="${host}">
 
-    <form th:action="${'/party/' + party.id + '/update'}" th:method="GET">
-        <button type="submit" class="btn btn-success">Update this Event</button>
-    </form>
-</div>
-<div th:if="${host}">
-    <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">
-        <div class="form-group">
+                        <form th:action="${'/party/' + party.id + '/update'}" th:method="GET">
+                            <button type="submit" class="btn btn-success">Update this Event</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
-            <label>Invite Guests to your Event</label>
-            <input type="text" class="form-control" id="guestUsername" aria-describedby="guestHelp"
-                   name="guestUsername">
-            <small id="guestHelp" class="form-text text-muted">Please use a guest's username when adding them to your
-                party
-            </small>
+            <div class="row justify-content-md-center">
+                <div class="col-4 col-sm-6">
+                    <h3>Hosted by<span th:text="${party.partyHost.firstName}"></span></h3>
+                    <p>Date/Time: <span th:text="${party.partyDate}"></span> at <span th:text="${party.partyTime}"></span></p>
+                    <p>Location: <span th:text="${party.partyLocation}"></span></p>
+                    <p>Description: <span th:text="${party.partyDescription}"></span></p>
+                </div>
+            </div>
         </div>
 
-        <button type="submit" class="btn btn-success">Add Guest</button>
-    </form>
+        <div class="col-8 col-sm-6">
+            <h3>Guest List:</h3>
+
+            <div class="row ">
+                <div class="col-12 col-sm-6">
+
+                    <div th:if="${host}">
+                        <div  th:if = "${userNotFound}" class="alert alert-warning" role="alert">
+                            <span>User not found</span>
+                        </div>
+                        <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">
+                            <div class="form-group">
+
+                                <label>Invite Guests to your Event</label>
+                                <input type="text" class="form-control" id="guestUsername" aria-describedby="guestHelp"
+                                       name="guestUsername">
+                                <small id="guestHelp" class="form-text text-muted">Please use a guest's username when adding them to your
+                                    party
+                                </small>
+                            </div>
+
+                            <button type="submit" class="btn btn-success">Add Guest</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-10">
+                    <div th:if="party.guestConfirmed != null">
+                        <ul th:each="guest : ${party.guestConfirmed}" class="list-group">
+                            <li class="list-group-item">
+                                <div class="container">
+                                    <div class="row ">
+                                        <div class="col-md-auto">
+                                            <button th:text="${guest.username}" type="submit" class="btn "></button>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <button type="submit" class="btn" th:value="${guest.username}"> CONFIRMED </button>
+                                        </div>
+                                        <div  class="col-md-auto">
+                                            <form  th:action="${'/party/' + party.id + '/delete-guest'}" th:method="PUT">
+                                                <button th:if="${host || guest.username == user.username}" type="submit"
+                                                        class="btn btn-outline-success" name="guestUsername" th:value="${guest.username}"> DELETE </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-10" th:if="party.guestInvited != null">
+                    <ul th:each="guest : ${party.guestInvited}" class="list-group">
+                        <li class="list-group-item">
+                            <div class="container">
+                                <div class="row ">
+                                    <div class="col-md-auto">
+                                        <button th:text="${guest.username}" type="submit" class="btn "></button>
+                                    </div>
+                                    <div  class="col-md-auto">
+                                        <form  th:action="${'/party/' + party.id + '/delete-guest'}" th:method="PUT">
+                                            <button th:if="${host}" type="submit" class="btn btn-outline-success"
+                                                    name="guestUsername" th:value="${guest.username}"> DELETE </button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <form  th:action="${'/party/' + party.id + '/delete-guest'}" th:method="PUT">
+                                            <button th:if="${guest.username == user.username}" type="submit" class="btn btn-outline-success"
+                                                    name="guestUsername" th:value="${guest.username}"> Can't Go
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-auto">
+                                        <form th:action="${'/party/' + party.id + '/confirm'}" th:method="PUT">
+                                            <button th:if="${guest.username == user.username}" type="submit" class="btn btn-outline-success"
+                                                    name="guestUsername" th:value="${guest.username}"> Going
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

@@ -163,6 +163,7 @@ public class PartyContoller {
         XisbiUser guestToRemove = userRepo.findByUsername(guestUsername);
         Party party = partyRepo.findById(id).get();
         party.guestInvited.remove(guestToRemove);
+        party.guestConfirmed.remove(guestToRemove);
         partyRepo.save(party);
 
         return new RedirectView("/party/"+ id);
