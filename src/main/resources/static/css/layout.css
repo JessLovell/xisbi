@@ -1,5 +1,37 @@
+#logo-image {
+    width: 55%;
+    height: auto;
+}
+
+#header-img {
+    float: left;
+    margin-left: 2%;
+}
+
+img.headshot {
+    max-width: 200px;
+    height: auto;
+}
+
+i.fas {
+    color: cyan;
+    margin-bottom: 0.5%;
+}
+
 .btn-outline-success {
-    color: #10d7e8;
-    background-color: transparent;
+    color: #ffffff;
+    background-color: #000000;
     background-image: none;
     border-color: #10d7e8;
+    margin-left: 1%;
+    font-size: 120%;
+}
+
+.btn-behance {
+    color: #000000;
+    background-color: #ffffff;
+    background-image: none;
+    border-color: #10d7e8;
+    margin-right: 1%;
+    font-size: 120%;}
+

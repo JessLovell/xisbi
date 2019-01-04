@@ -21,22 +21,22 @@
 
 <!-- Template fragment for HEADER Navbar buttons -->
 <div th:fragment="nav-bar (user)">
-    <nav class="navbar fixed-top navbar-light bg-light" style="background-color: transparent;">
+    <nav class="navbar navbar-light bg-light" style="background-color: transparent;">
         <a class="navbar-brand" href="/">
             <img src="/img/xisbi_header_logo_vector.svg" alt="XISBI">
         </a>
 
-        <div th:if = "${user == false}">
+        <div th:if = "${user == false}" class="header-button-group">
             <a href="/"><button type="submit" class="btn btn-outline-success">Home</button></a>
             <a href="/login"><button type="submit" class="btn btn-outline-success">Login</button></a>
             <a href="/signup"><button type="submit" class="btn btn-outline-success">Sign Up</button></a>
         </div>
 
-        <div th:if = "${user}">
-            <p th:text = "${user.username}"></p>
-            <button type="submit" class="btn btn-outline-success"><a href="/">Home</a></button>
-            <button type="submit" class="btn btn-outline-success"><a href="/my-dashboard">Dashboard</a></button>
-            <button type="submit" class="btn btn-outline-success"><a href="/perform_logout">Logout</a></button>
+        <div th:if = "${user}" class="header-button-group">
+            <a href="/my-dashboard"><button type="button" th:text="${user.username}" class="btn btn-brand btn-behance"></button></a>
+            <a href="/"><button type="submit" class="btn btn-outline-success">Home</button></a>
+            <a href="/my-dashboard"><button type="submit" class="btn btn-outline-success">Dashboard</button></a>
+            <a href="/perform_logout"><button type="submit" class="btn btn-outline-success">Logout</button></a>
         </div>
     </nav>
 </div>
