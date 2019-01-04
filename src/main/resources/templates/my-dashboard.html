@@ -11,40 +11,55 @@
 
 <div class="container">
     <div class="row justify-content-md-center">
-        <div class="col-8 col-sm-6">
+        <div class="col-6 col-md-4">
             <h1>Welcome to Your Dashboard</h1>
 
-            <label>Username</label>
-            <h3 th:text="${user.username}">username</h3>
             <img src="/img/default_user_image.png" alt="user image" class="img-thumbnail"/>
-            <div>
-                <label>First Name</label>
-                <span th:text="${user.firstName}"></span>
-
-                <label>Last Name</label>
-                <span th:text="${user.lastName}"></span>
-
-                <label>Birthday</label>
-                <span th:text="${user.dateOfBirth}"></span>
-
-                <label>Your Party Interests</label>
-                <span th:text="${user.partyInterests}"></span>
+            <div class="row">
+                <div class="col-8 col-sm-6">
+                    <h3 th:text="${user.username}">username</h3>
+                </div>
             </div>
-
-            <form action="/party/create" method="GET">
-                <button type="submit" class="btn btn-success">Host an Event</button>
-            </form>
+            <div class="row">
+                <div class="col-12 ">
+                    <label>Name: </label>
+                    <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label>Birthday: </label>
+                    <span th:text="${user.dateOfBirth}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label>Your Party Interests: </label>
+                    <span th:text="${user.partyInterests}"></span>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col-12 justify-content-md-center">
+                    <form action="/party/create" method="GET">
+                    <button type="submit" class="btn btn-success">Host an Event</button>
+                </form>
+                </div>
+            </div>
         </div>
 
 
-        <div class="col-4 col-sm-6 justify-content-md-center">
+        <div class="col-8 col-sm-6 ">
 
-            <div class="row justify-content-md-center">
-                <div class="col-8 col-sm-6">
+            <div class="row">
+                <div class="col-12">
                     <div  th:if = "${deleteMessage}" class="alert alert-success" role="alert">
                         Event has been deleted.
                     </div>
                     <h3>Events you are hosting:</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
                     <div th:if="${user.hosting != null}">
                         <ul class="list-group" th:each="party : ${user.hosting}">
                             <a th:href="${'/party/' + party.id}" >
@@ -61,7 +76,7 @@
             </div>
 
             <div class="row">
-                <div class="col-8 col-sm-6">
+                <div class="col-12">
                     <h3>Events you are invited to:</h3>
                     <div th:if="${user.invited != null}">
                         <ul th:each="party : ${user.invited}" class="list-group">
@@ -79,7 +94,7 @@
             </div>
 
             <div class="row">
-                <div class="col-8 col-sm-6">
+                <div class="col-12">
                     <h3>Events you are confirmed to attend:</h3>
                     <div th:if="${user.confirmed != null}">
                         <ul th:each="party : ${user.confirmed}">
