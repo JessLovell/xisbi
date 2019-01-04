@@ -22,7 +22,7 @@ public class PartyContoller {
     private PartyRepository partyRepo;
 
     // Displays party creation page via party.html template
-    @RequestMapping(value="/party/create", method= RequestMethod.GET)
+    @RequestMapping(value = "/party/create", method = RequestMethod.GET)
     public String displayPartyTemplate(Model model, Principal p) {
         XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
         model.addAttribute("user", userRepo.findById(user.id).get());
@@ -31,7 +31,7 @@ public class PartyContoller {
     }
 
     // Creates a party from the creation page via party.html template
-    @RequestMapping(value="/party/create", method= RequestMethod.POST)
+    @RequestMapping(value = "/party/create", method = RequestMethod.POST)
     public RedirectView createPartyFromTemplate(
             Principal p,
             Model model,
@@ -61,25 +61,25 @@ public class PartyContoller {
     }
 
     // Displays update version of party creation page via party.html template
-    @RequestMapping(value="/party/{id}/update", method= RequestMethod.GET)
+    @RequestMapping(value = "/party/{id}/update", method = RequestMethod.GET)
     public String displayUpdateTemplate(
             @PathVariable long id,
             Model model, Principal p) {
         XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
-        if (partyRepo.findById(id).isPresent()){
+        if (partyRepo.findById(id).isPresent()) {
             model.addAttribute("user", userRepo.findById(user.id).get());
             model.addAttribute("party", partyRepo.findById(id).get());
             model.addAttribute("update", true);
 
             return "party";
-        }else {
+        } else {
             throw new PartyNotFoundException("Event does not exist");
         }
     }
 
     // Displays XISBI update section in the party creation page via party.html template
-    @RequestMapping(value="/party/{id}/update", method= RequestMethod.PUT)
+    @RequestMapping(value = "/party/{id}/update", method = RequestMethod.PUT)
     public RedirectView updateParty(
             @PathVariable long id,
             Model model, @RequestParam String partyTitle,
@@ -95,12 +95,12 @@ public class PartyContoller {
         partyRepo.save(partyToUpdate);
 
         model.addAttribute("party", partyRepo.findById(id).get());
-        return new RedirectView("/party/"+ id);
+        return new RedirectView("/party/" + id);
     }
 
     //message for User not found in database
     @RequestMapping(value = "/party/{id}/user-not-found", method = RequestMethod.GET)
-    public String userNotFound(@PathVariable long id,Model model, Principal p){
+    public String userNotFound(@PathVariable long id, Model model, Principal p) {
         XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
         if (partyRepo.findById(id).isPresent()) {
@@ -112,11 +112,13 @@ public class PartyContoller {
             model.addAttribute("host", Auth.isHost(user, party));
 
 
-        }else{throw new PartyNotFoundException("Event does not exist");}
+        } else {
+            throw new PartyNotFoundException("Event does not exist");
+        }
         return "oneParty";
     }
 
-    @RequestMapping(value ="/party/{id}/add-guest", method = RequestMethod.POST)
+    @RequestMapping(value = "/party/{id}/add-guest", method = RequestMethod.POST)
     public RedirectView updateGuestInvited(
             @RequestParam String guestUsername,
             @PathVariable long id) {
@@ -127,8 +129,7 @@ public class PartyContoller {
         System.out.println(guest);
         if (guest == null) {
             return new RedirectView("/party/" + id + "/user-not-found");
-        }
-        else if (userRepo.findById(guest.id).isPresent()) {
+        } else if (userRepo.findById(guest.id).isPresent()) {
             Party party = partyRepo.findById(id).get();
             //  add to guest list and then save to party repo
             party.guestInvited.add(guest);
@@ -142,10 +143,10 @@ public class PartyContoller {
         return new RedirectView("/party/" + id);
     }
 
-    @RequestMapping(value ="/party/{id}/confirm", method = RequestMethod.PUT)
+    @RequestMapping(value = "/party/{id}/confirm", method = RequestMethod.PUT)
     public RedirectView updateGuestConfirmation(
             @RequestParam String guestUsername,
-            @PathVariable long id){
+            @PathVariable long id) {
 
         XisbiUser guestToConfirm = userRepo.findByUsername(guestUsername);
         Party party = partyRepo.findById(id).get();
@@ -153,24 +154,24 @@ public class PartyContoller {
         party.guestConfirmed.add(guestToConfirm);
         partyRepo.save(party);
 
-        return new RedirectView("/party/"+ id);
+        return new RedirectView("/party/" + id);
     }
 
-    @RequestMapping(value="/party/{id}/delete-guest", method=RequestMethod.PUT)
+    @RequestMapping(value = "/party/{id}/delete-guest", method = RequestMethod.PUT)
     public RedirectView deleteGuestFromParty(@PathVariable long id,
-                                             @RequestParam String guestUsername){
+                                             @RequestParam String guestUsername) {
 
         XisbiUser guestToRemove = userRepo.findByUsername(guestUsername);
         Party party = partyRepo.findById(id).get();
         party.guestInvited.remove(guestToRemove);
         partyRepo.save(party);
 
-        return new RedirectView("/party/"+ id);
+        return new RedirectView("/party/" + id);
     }
 
     // Deletes a specific version of party page via party.html template
-    @RequestMapping(value="/party/{id}", method= RequestMethod.DELETE)
-    public RedirectView deleteAParty(@PathVariable long id){
+    @RequestMapping(value = "/party/{id}", method = RequestMethod.DELETE)
+    public RedirectView deleteAParty(@PathVariable long id) {
 
         Optional<Party> partyToDelete = partyRepo.findById(id);
 
@@ -183,20 +184,20 @@ public class PartyContoller {
 
     //message for party deleted
     @RequestMapping(value = "/my-dashboard-delete-event", method = RequestMethod.GET)
-    public String deleteMessage(Model model, Principal p){
+    public String deleteMessage(Model model, Principal p) {
 
-        model.addAttribute("deleteMessage",true);
+        model.addAttribute("deleteMessage", true);
         model.addAttribute("user", ((UsernamePasswordAuthenticationToken) p).getPrincipal());
 
         return "my-dashboard";
     }
 
     // Displays a specific version of party page via oneParty.html template
-    @RequestMapping(value="/party/{id}", method= RequestMethod.GET)
+    @RequestMapping(value = "/party/{id}", method = RequestMethod.GET)
     public String viewAParty(
             @PathVariable long id,
             Model model, Principal p) {
-        if (partyRepo.findById(id).isPresent()){
+        if (partyRepo.findById(id).isPresent()) {
             Party party = partyRepo.findById(id).get();
             XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
@@ -211,12 +212,13 @@ public class PartyContoller {
 
     //Error message for parties
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    class PartyNotFoundException extends RuntimeException{
+    class PartyNotFoundException extends RuntimeException {
 
-        public PartyNotFoundException(){
+        public PartyNotFoundException() {
             super();
         }
-        public PartyNotFoundException(String message){
+
+        public PartyNotFoundException(String message) {
             super(message);
         }
     }
