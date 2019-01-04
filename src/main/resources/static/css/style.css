@@ -1,0 +1,163 @@
+
+/* Background for non-homepages */
+body {
+    background-color: rgb(12, 56, 106);
+    font-family: 'Titillium Web', sans-serif;
+}
+
+/* Background for homepage */
+.index-body {
+    background: url('/img/background.jpeg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+#logo-wrapper {
+    margin-bottom: 1%;
+}
+
+#info-wrapper {
+    background: rgba(0, 0, 0, 0.65);
+    padding-top: 2%;
+    margin-bottom: 3%;
+}
+
+#about-us-wrapper {
+    background: rgba(0, 0, 0, 0.65);
+    padding-top: 2%;
+    margin-bottom: 3%;
+}
+
+/* NavBar styling*/
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+header {
+    height: 10%;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 0px auto;
+}
+
+footer {
+    height: 5%;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 0px auto;
+}
+
+
+#index-header {
+    background: rgba(0, 0, 0, 0);
+}
+
+h1 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 4em;
+    color: yellow;
+    margin-bottom: 1.5%;
+}
+
+h2, h3 {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2em;
+    color: aqua;
+    margin-bottom: 3%;
+}
+
+p {
+    color: white;
+}
+
+label {
+    color: yellow;
+}
+
+span {
+    color: white;
+}
+
+.login-group {
+    width: 55%;
+    margin: 0px auto;
+    margin-bottom: 1%;
+}
+
+.form-group label {
+    font-size: 1.2em;
+}
+
+.col-12 {
+    margin-bottom: 3%;
+}
+
+.header-button-group {
+    width: 60%;
+}
+
+#header-logo-placeholder {
+    display: none;
+}
+
+.btn-outline-success {
+    float: right;
+    margin-left: 2%;
+}
+
+.btn-behance {
+    float: right;
+    margin-left: 2%;
+}
+
+.error {
+    color: red;
+}
+
+#logo-image {
+    width: 55%;
+    height: auto;
+}
+
+#header-img {
+    float: left;
+    margin-left: 2%;
+}
+
+img.headshot {
+    max-width: 220px;
+    height: auto;
+    margin-bottom: 3%;
+}
+
+.img-thumbnail {
+    margin-bottom: 3%;
+}
+
+i.fas {
+    color: ivory;
+    margin-bottom: 5%;
+}
+
+.btn-outline-success {
+    color: #ffffff;
+    background-color: #000000;
+    background-image: none;
+    border-color: #10d7e8;
+    margin-left: 1%;
+    font-size: 120%;
+}
+
+.btn-behance {
+    color: #000000;
+    background-color: #ffffff;
+    background-image: none;
+    border-color: #10d7e8;
+    margin-right: 1%;
+    font-size: 120%;
+}
+
+
+
+
