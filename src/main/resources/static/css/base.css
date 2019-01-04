@@ -15,7 +15,22 @@ body {
  font-family: 'Titillium Web', sans-serif;
 }
 
+#logo-wrapper {
+    margin-bottom: 3%;
+}
+
+#info-wrapper {
+    background: rgba(0, 0, 0, 0.5);
+    margin-bottom: 3%;
+}
+
+#about-us-wrapper {
+    background: rgba(0, 0, 0, 0.5);
+    margin-bottom: 3%;
+}
+
 /* NavBar styling*/
+
 .navbar:not(.top-nav-collapse) {
     background: transparent !important;
 }
@@ -27,7 +42,7 @@ header {
 }
 
 h1 {
- color: white;
+ color: yellow;
 }
 
 h3 {
@@ -38,19 +53,22 @@ p {
     color: white;
 }
 
-.btn {
-    color: white;
+.header-button-group {
+    width: 40%;
+}
+
+.btn-outline-success {
+    float: right;
+    margin-left: 2%;
+}
+
+.btn-behance {
+    float: right;
+    margin-left: 2%;
 }
 
 .error {
-    background-color: red;
+    color: red;
 }
 
-#index-info-wrapper {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-#about-us-wrapper {
-    background: rgba(0, 0, 0, 0.5);
-}
 
