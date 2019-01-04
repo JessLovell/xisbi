@@ -10,42 +10,43 @@
 <body>
 
 <div th:if="${!update}">
-    <h1>Please Create Your Party</h1>
+    <h1 class="text-center">Please Create Your Party</h1>
 
     <!-- FORM SECTION FOR INITIAL PARTY CREATION -->
     <form action="/party/create" method="POST">
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Create a Party Title</label>
             <input type="text" class="form-control" id="partyTitle" aria-describedby="titleHelp"
                    placeholder="-- title --" name="partyTitle">
         </div>
 
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Select a Date for your Party</label>
             <input type="date" class="form-control" id="partyDate" aria-describedby="dateHelp"
                    name="partyDate">
         </div>
 
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Provide a Time for your Party</label>
             <input type="time" class="form-control" id="partyTime" aria-describedby="timeHelp"
                    name="partyTime">
             <small id="timeHelp" class="form-text text-muted">Times are added in a HH:MM AM or PM format</small>
         </div>
 
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Provide a Location for your Party</label>
             <input type="text" class="form-control" id="partyLocation" aria-describedby="locationHelp"
                    name="partyLocation">
         </div>
 
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Provide a Description for your Party</label>
             <input type="text" class="form-control" id="partyDescription" aria-describedby="locationHelp"
                    name="partyDescription">
+            <br>
+            <button type="submit" class="btn btn-outline-success">Submit</button>
         </div>
 
-        <button type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>
 
@@ -55,41 +56,44 @@
 <div th:if="${update}">
     <!-- UPDATE THE PARTY DETAILS IN THE DB -->
     <form th:action="${'/party/' + party.id + '/update'}" th:method="PUT">
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Update Event Title</label>
-            <input type="text" class="form-control" id="partyTitle" aria-describedby="titleHelp" th:value="${party.partyTitle}" name="partyTitle">
+            <input type="text" class="form-control" id="partyTitle" aria-describedby="titleHelp"
+                   th:value="${party.partyTitle}" name="partyTitle">
         </div>
 
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Update Event Date</label>
-            <input type="date" class="form-control" id="partyDate" aria-describedby="dateHelp" name="partyDate" th:value="${party.partyDate}">
+            <input type="date" class="form-control" id="partyDate" aria-describedby="dateHelp" name="partyDate"
+                   th:value="${party.partyDate}">
         </div>
 
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Update Event Time</label>
             <input type="time" class="form-control" id="partyTime" aria-describedby="timeHelp"
-                   name="partyTime" th:value="${party.partyTime}" >
+                   name="partyTime" th:value="${party.partyTime}">
             <small id="timeHelp" class="form-text text-muted">Times are added in a HH:MM AM or PM format</small>
         </div>
 
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Update Event Location</label>
             <input type="text" class="form-control" id="partyLocation" aria-describedby="locationHelp"
                    name="partyLocation" th:value="${party.partyLocation}">
         </div>
 
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Update Event Description</label>
             <input type="text" class="form-control" id="partyDescription" aria-describedby="locationHelp"
                    name="partyDescription" th:value="${party.partyDescription}">
+                <br>
+            <center><button type="submit" class="btn btn-outline-success">Update Party Details</button>
+            </center>
         </div>
 
-        <button type="submit" class="btn btn-success">Update Party Details</button>
+
     </form>
 
-    <form th:action="${'/party/' + party.id}" th:method="DELETE">
-        <button type="submit" class="btn btn-success">Delete Event</button>
-    </form>
+
 </div>
 
 </body>

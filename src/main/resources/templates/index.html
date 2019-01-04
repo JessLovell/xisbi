@@ -6,109 +6,119 @@
     <title>XISBI Homepage</title>
 </head>
 <!-- NAVBAR is different for homepage from other pages -->
-<header>
+<header id="index-header">
     <nav class="navbar navbar-light bg-light" style="background-color: transparent;">
-        <a class="navbar-brand" href="#"></a>
-        <div th:if = "${user == false}">
-            <a href="/"><button type="submit" class="btn btn-outline-success">Home</button></a>
-            <a href="/login"><button type="submit" class="btn btn-outline-success">Login</button></a>
-            <a href="/signup"><button type="submit" class="btn btn-outline-success">Sign Up</button></a>
+        <a class="navbar-brand" href="/">
+            <img src="https://via.placeholder.com/110x59.png" id="header-logo-placeholder" alt="XISBI">
+        </a>
+
+        <div th:if="${user == false}" class="header-button-group">
+            <a href="/">
+                <button type="submit" class="btn btn-outline-success">Home</button>
+            </a>
+            <a href="/login">
+                <button type="submit" class="btn btn-outline-success">Login</button>
+            </a>
+            <a href="/signup">
+                <button type="submit" class="btn btn-outline-success">Sign Up</button>
+            </a>
         </div>
-        <div th:if = "${user}">
-            <p th:text = "${user.username}"></p>
-            <button type="submit" class="btn btn-outline-success"><a href="/">Home</a></button>
-            <button type="submit" class="btn btn-outline-success"><a href="/my-dashboard">Dashboard</a></button>
-            <button type="submit" class="btn btn-outline-success"><a href="/perform_logout">Logout</a></button>
+
+        <div th:if="${user}" class="header-button-group">
+            <button type="button" th:text="${user.username}" class="btn btn-brand btn-behance"></button>
+            <a href="/">
+                <button type="submit" class="btn btn-outline-success">Home</button>
+            </a>
+            <a href="/my-dashboard">
+                <button type="submit" class="btn btn-outline-success">Dashboard</button>
+            </a>
+            <a href="/perform_logout">
+                <button type="submit" class="btn btn-outline-success">Logout</button>
+            </a>
         </div>
     </nav>
 </header>
+
 <body class="index-body">
 <!--LOGO SECTION-->
-<div class="container">
+<div class="container" id="logo-wrapper">
     <div class="text-center">
-        <img src="/img/xisbi_logo_vector.svg" alt="XISBI LOGO">
-        <h1>Come Join the Party!</h1>
-        <a href="/login">
-            <button type="submit" class="btn btn-outline-success">Login</button>
-        </a>
-        <a href="/signup">
-            <button type="submit" class="btn btn-outline-success">Sign Up</button>
-        </a>
+        <img src="/img/xisbi_logo_vector.svg" alt="XISBI LOGO" id="logo-image">
     </div>
 </div>
+
 <!--XISBI INFO SECTION-->
-<div class="container" id="index-info-wrapper">
+<div class="container rounded" id="info-wrapper">
     <div class="text-center">
-        <h1>Plan an Event in Three Simple Steps</h1>
+        <h1>Your Event. Three Steps.</h1>
     </div>
     <div class="text-center">
         <div class="row">
             <div class="col-sm-4">
-                <i class="fas fa-user-check"></i>
-                <h3>Join Xisbi</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                <i class="fas fa-user-check fa-6x"></i>
+                <h2>Join Xisbi</h2>
+                <p class="text-justify">Signing up for Xisbi is easy! Just a couple pieces of information and you are on your way to simplifying your event management.</p>
             </div>
             <div class="col-sm-4">
-                <i class="fas fa-calendar-check"></i>
-                <h3>Create An Event</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                <i class="fas fa-calendar-check fa-6x"></i>
+                <h2>Create An Event</h2>
+                <p class="text-justify">Hosting an event on Xisbi is a breeze. Our one-stop dashboard let's you create and manage all your events at a glance to free up more of your time to doing the real prep work.</p>
             </div>
             <div class="col-sm-4">
-                <i class="fas fa-users"></i>
-                <h3>Add Your Guests</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                <i class="fas fa-users fa-6x"></i>
+                <h2>Add Your Guests</h2>
+                <p class="text-justify">Now you've got an event made - let's add your friends and colleagues to the list right from your event's page.<br><br>Quick and elegant - those are our watchwords!</p>
             </div>
         </div>
     </div>
 </div>
 <!--ABOUT US SECTION-->
-<div class="container" id="about-us-wrapper">
+<div class="container rounded" id="about-us-wrapper">
     <div class="text-center">
         <h1>Who We Are</h1>
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <img src="https://via.placeholder.com/250x300.png?text=IMAGE">
             <div class="text-center">
+                <img src="/img/headshot_zahra.png?text=IMAGE" class="headshot rounded">
                 <h3>Zahra Mohamed</h3>
             </div>
-            <p>Zahra Mohamed is self-directed and motivated multi-cultural professional with a background in chemical
-                engineering and biochemistry.<br><br>Her core goal in life is to be in a constant state of learning</p>
+            <p class="text-justify">Zahra is a self-directed and motivated multi-cultural professional fluent in Somali, Swahili, Chimini and English.. She has a background in investigative medicine with degrees in chemical  engineering and biochemistry and has articles published in the AIDS Patient Care and STDs journal.<br><br>She loves comedy, culinary adventures and expanding her mental horizons - in that order.</p>
         </div>
         <div class="col-sm-3">
-            <img src="https://via.placeholder.com/250x300.png?text=IMAGE">
             <div class="text-center">
+                <img src="/img/headshot_dave.png?text=IMAGE" class="headshot rounded">
                 <h3>Dave Muench</h3>
             </div>
-            <p>When he's not busy flying around the world, stopping nefarious terrorist organizations and ruthless
+            <p class="text-justify">When he's not busy flying around the world, stopping nefarious terrorist organizations and ruthless
                 state actors for "The Feds," Dave can be found furiously hacking away at a laptop - usually with one
-                of four cats trying to sleep on his keyboard - writing grand and unreasonably dramatic storylines to
+                of four cats trying to sleep on his keyboard - writing grand and unreasonably dramatic story lines to
                 appease his growing empire of dedicated wargamers across the globe.<br><br> He is a Scorpio; loves
-                kimchee and pinot noir... but not at the same time.</p></div>
-        <div class="col-sm-3">
-            <img src="https://via.placeholder.com/250x300.png?text=IMAGE">
-            <div class="text-center">
-                <h3>Kevin Rosales</h3>
-            </div>
-            <p>Kevin Rosales is a young Software Developer from the Greater Seattle area. He Gained his interest in tech
-                when he was 16 and successfully built his computer. After that he was hooked and determined to learn
-                more about technology. Currently he is learning Java to further his knowledge in software
-                development</p>
+                kimchee and pinot noir... but not at the same time.</p>
         </div>
         <div class="col-sm-3">
-            <img src="https://via.placeholder.com/250x300.png?text=IMAGE">
             <div class="text-center">
+                <img src="/img/headshot_kevin.png?text=IMAGE" class="headshot rounded">
+                <h3>Kevin Rosales</h3>
+            </div>
+            <p class="text-justify">Kevin is a young Software Developer from the Greater Seattle area. He developed his keen interest in tech at the age of 16 when he successfully built his first computer. After that he was hooked and determined to learn more about technology.<br><br>Currently, he is immersed in learning Java to further his knowledge in software development</p>
+        </div>
+        <div class="col-sm-3">
+            <div class="text-center">
+                <img src="/img/headshot_jessica.png?text=IMAGE" class="headshot rounded">
                 <h3>Jessica Lovell</h3>
             </div>
-            <p>Born and raised deep in the heart of Texas, Jessica is a full-stack javascript software developer based
+            <p class="text-justify">Born and raised deep in the heart of Texas, Jessica is a full-stack javascript software developer based
                 in Seattle.<br><br>Her background in mathematics and love for guiding tourists inspires her passion for
                 justice and ice cream and is looking for opportunities to develop her skills in cybersecurity and
                 cryptography.</p>
         </div>
     </div>
 </div>
+
 </body>
+
+<footer>
+</footer>
+
 </html>
