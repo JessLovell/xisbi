@@ -9,62 +9,93 @@
 </header>
 <body>
 
-<h1>Welcome to Your Dashboard</h1>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-8 col-sm-6">
+            <h1>Welcome to Your Dashboard</h1>
 
-<p th:if = "${deleteMessage == true}" class = "error">Event has been deleted.</p>
+            <label>Username</label>
+            <h3 th:text="${user.username}">username</h3>
+            <img src="/img/default_user_image.png" alt="user image" class="img-thumbnail"/>
+            <div>
+                <label>First Name</label>
+                <span th:text="${user.firstName}"></span>
 
-<label>Username</label>
-<h3 th:text="${user.username}">username</h3>
-<img src="/img/default_user_image.png" alt="user image" class="img-thumbnail"/>
-<div>
-    <label>First Name</label>
-    <span th:text="${user.firstName}"></span>
+                <label>Last Name</label>
+                <span th:text="${user.lastName}"></span>
 
-    <label>Last Name</label>
-    <span th:text="${user.lastName}"></span>
+                <label>Birthday</label>
+                <span th:text="${user.dateOfBirth}"></span>
 
-    <label>Birthday</label>
-    <span th:text="${user.dateOfBirth}"></span>
+                <label>Your Party Interests</label>
+                <span th:text="${user.partyInterests}"></span>
+            </div>
 
-    <label>Your Party Interests</label>
-    <span th:text="${user.partyInterests}"></span>
-</div>
-
-    <form action="/party/create" method="GET">
-        <button type="submit" class="btn btn-success">Host an Event</button>
-    </form>
-
-<div>
-    <div>
-        <h3>Events you are hosting:</h3>
-        <div th:if="${user.hosting != null}">
-            <ul th:each="party : ${user.hosting}">
-                <a th:href="${'/party/' + party.id}" ><li th:text="${party.partyTitle}"></li></a>
-            </ul>
-        </div>
-        <div th:if="${user.hosting == null || user.hosting.size() == 0}">
-            <p>You are not hosting any events at this time.</p>
-        </div>
-    </div>
-    <div>
-        <h3>Events you are invited to:</h3>
-        <div th:if="${user.invited != null}">
-            <ul th:each="party : ${user.invited}">
-                <a th:href="${'/party/' + party.id}" ><li th:text="${party.partyTitle}"></li></a>
-            </ul>
-        </div>
-        <div th:if="${user.invited == null || user.invited.size() == 0}">
-            <p>No events at this time.</p>
+            <form action="/party/create" method="GET">
+                <button type="submit" class="btn btn-success">Host an Event</button>
+            </form>
         </div>
 
-        <h3>Events you are confirmed to attend:</h3>
-        <div th:if="${user.confirmed != null}">
-            <ul th:each="party : ${user.confirmed}">
-                <a th:href="${'/party/' + party.id}" ><li th:text="${party.partyTitle}"></li></a>
-            </ul>
-        </div>
-        <div th:if="${user.confirmed == null || user.confirmed.size() == 0}">
-            <p>No confirmed events at this time.</p>
+
+        <div class="col-4 col-sm-6 justify-content-md-center">
+
+            <div class="row justify-content-md-center">
+                <div class="col-8 col-sm-6">
+                    <div  th:if = "${deleteMessage}" class="alert alert-success" role="alert">
+                        Event has been deleted.
+                    </div>
+                    <h3>Events you are hosting:</h3>
+                    <div th:if="${user.hosting != null}">
+                        <ul class="list-group" th:each="party : ${user.hosting}">
+                            <a th:href="${'/party/' + party.id}" >
+                                <li th:text="${party.partyTitle}" class="list-group-item"></li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div th:if="${user.hosting == null || user.hosting.size() == 0}">
+                        <ul class="list-group">
+                            <li class="list-group-item">You are not hosting any events at this time.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-8 col-sm-6">
+                    <h3>Events you are invited to:</h3>
+                    <div th:if="${user.invited != null}">
+                        <ul th:each="party : ${user.invited}" class="list-group">
+                            <a th:href="${'/party/' + party.id}" >
+                                <li th:text="${party.partyTitle}" class="list-group-item"></li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div th:if="${user.invited == null || user.invited.size() == 0}">
+                        <ul class="list-group">
+                            <li class="list-group-item">No events at this time.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-8 col-sm-6">
+                    <h3>Events you are confirmed to attend:</h3>
+                    <div th:if="${user.confirmed != null}">
+                        <ul th:each="party : ${user.confirmed}">
+                            <a th:href="${'/party/' + party.id}" class="list-group">
+                                <li th:text="${party.partyTitle}" class="list-group-item"></li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div th:if="${user.confirmed == null || user.confirmed.size() == 0}">
+                        <ul class="list-group">
+                            <li class="list-group-item">No confirmed events at this time.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
