@@ -38,7 +38,7 @@ public class XisbiApplicationTests {
 	public void testIndexRoute() {
 		ResponseEntity<String> response =  this.restTemplate.getForEntity("http://localhost:" + port + "/", String.class);
 		assertEquals("The response code should be 200", 200, response.getStatusCodeValue());
-		assertTrue("response contain Welcome to XISBI", response.toString().contains("<h1>Welcome to XISBI</h1>"));
+		assertTrue("response contain Your Event. Three Steps.", response.toString().contains("<h1>Your Event. Three Steps.</h1>"));
 	}
 
 	@Test
