@@ -82,20 +82,20 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row ">
                 <div class="col-10">
                     <div th:if="party.guestConfirmed != null">
                         <ul th:each="guest : ${party.guestConfirmed}" class="list-group">
                             <li class="list-group-item">
                                 <div class="container">
-                                    <div class="row ">
+                                    <div class="row justify-content-between">
                                         <div class="col-md-auto">
                                             <button th:text="${guest.username}" type="submit" class="btn "></button>
                                         </div>
                                         <div class="col-md-auto">
                                             <button type="submit" class="btn" th:value="${guest.username}"> CONFIRMED </button>
                                         </div>
-                                        <div  class="col-md-auto">
+                                        <div  class="col-md-auto ">
                                             <form  th:action="${'/party/' + party.id + '/delete-guest'}" th:method="PUT">
                                                 <button th:if="${host || guest.username == user.username}" type="submit"
                                                         class="btn btn-outline-success" name="guestUsername" th:value="${guest.username}"> DELETE </button>
@@ -114,15 +114,9 @@
                     <ul th:each="guest : ${party.guestInvited}" class="list-group">
                         <li class="list-group-item">
                             <div class="container">
-                                <div class="row ">
+                                <div class="row justify-content-between">
                                     <div class="col-md-auto">
                                         <button th:text="${guest.username}" type="submit" class="btn "></button>
-                                    </div>
-                                    <div  class="col-md-auto">
-                                        <form  th:action="${'/party/' + party.id + '/delete-guest'}" th:method="PUT">
-                                            <button th:if="${host}" type="submit" class="btn btn-outline-success"
-                                                    name="guestUsername" th:value="${guest.username}"> DELETE </button>
-                                        </form>
                                     </div>
                                     <div class="col-md-auto">
                                         <form  th:action="${'/party/' + party.id + '/delete-guest'}" th:method="PUT">
@@ -136,6 +130,12 @@
                                             <button th:if="${guest.username == user.username}" type="submit" class="btn btn-outline-success"
                                                     name="guestUsername" th:value="${guest.username}"> Going
                                             </button>
+                                        </form>
+                                    </div>
+                                    <div  class="col-md-auto">
+                                        <form  th:action="${'/party/' + party.id + '/delete-guest'}" th:method="PUT">
+                                            <button th:if="${host}" type="submit" class="btn btn-outline-success"
+                                                    name="guestUsername" th:value="${guest.username}"> DELETE </button>
                                         </form>
                                     </div>
                                 </div>
