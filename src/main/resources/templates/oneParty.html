@@ -58,8 +58,6 @@
         </div>
 
         <div class="col-8 col-sm-6">
-            <h3>Guest List:</h3>
-
             <div class="row ">
                 <div class="col-10">
 
@@ -86,8 +84,9 @@
             </div>
 
             <div class="row ">
+                <h3 th:if="${(party.guestConfirmed != null && party.guestConfirmed.size() != 0) || (party.guestInvited != null && party.guestInvited.size() != 0)}">Guest List:</h3>
                 <div class="col-10">
-                    <div th:if="party.guestConfirmed != null">
+                    <div th:if="${party.guestConfirmed != null}">
                         <ul th:each="guest : ${party.guestConfirmed}" class="list-group">
                             <li class="list-group-item">
                                 <div class="container">
