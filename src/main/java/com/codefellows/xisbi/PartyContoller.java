@@ -164,6 +164,7 @@ public class PartyContoller {
         XisbiUser guestToRemove = userRepo.findByUsername(guestUsername);
         Party party = partyRepo.findById(id).get();
         party.guestInvited.remove(guestToRemove);
+        party.guestConfirmed.remove(guestToRemove);
         partyRepo.save(party);
 
         return new RedirectView("/party/" + id);
@@ -186,8 +187,9 @@ public class PartyContoller {
     @RequestMapping(value = "/my-dashboard-delete-event", method = RequestMethod.GET)
     public String deleteMessage(Model model, Principal p) {
 
+        XisbiUser current = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
         model.addAttribute("deleteMessage", true);
-        model.addAttribute("user", ((UsernamePasswordAuthenticationToken) p).getPrincipal());
+        model.addAttribute("user", userRepo.findById(current.id).get());
 
         return "my-dashboard";
     }
