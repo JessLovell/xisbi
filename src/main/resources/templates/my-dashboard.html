@@ -11,58 +11,61 @@
 
 <div class="container">
     <div class="row justify-content-md-center">
+        <h1>Welcome to Your Dashboard</h1>
         <div class="col-6 col-md-4">
-            <h1>Welcome to Your Dashboard</h1>
-
             <img src="/img/default_user_image.png" alt="user image" class="img-thumbnail"/>
+
             <div class="row">
                 <div class="col-8 col-sm-6">
                     <h3 th:text="${user.username}">username</h3>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-12 ">
                     <label>Name: </label>
                     <span th:text="${user.firstName}"></span> <span th:text="${user.lastName}"></span>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-12">
                     <label>Birthday: </label>
                     <span th:text="${user.dateOfBirth}"></span>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-12">
                     <label>Your Party Interests: </label>
                     <span th:text="${user.partyInterests}"></span>
                 </div>
             </div>
+
             <div class="row ">
                 <div class="col-12 justify-content-md-center">
                     <form action="/party/create" method="GET">
-                    <button type="submit" class="btn btn-success">Host an Event</button>
-                </form>
+                        <button type="submit" class="btn btn-outline-success left-btn">Host an Event</button>
+                    </form>
                 </div>
             </div>
         </div>
 
-
         <div class="col-8 col-sm-6 ">
-
             <div class="row">
                 <div class="col-12">
-                    <div  th:if = "${deleteMessage}" class="alert alert-success" role="alert">
+                    <div th:if="${deleteMessage}" class="alert alert-success" role="alert">
                         Event has been deleted.
                     </div>
-                    <h3>Events you are hosting:</h3>
+                    <h3>Events You are Hosting:</h3>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-12">
                     <div th:if="${user.hosting != null}">
                         <ul class="list-group" th:each="party : ${user.hosting}">
-                            <a th:href="${'/party/' + party.id}" >
+                            <a th:href="${'/party/' + party.id}">
                                 <li th:text="${party.partyTitle}" class="list-group-item"></li>
                             </a>
                         </ul>
@@ -77,10 +80,10 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h3>Events you are invited to:</h3>
+                    <h3>Event Attendance Requests:</h3>
                     <div th:if="${user.invited != null}">
                         <ul th:each="party : ${user.invited}" class="list-group">
-                            <a th:href="${'/party/' + party.id}" >
+                            <a th:href="${'/party/' + party.id}">
                                 <li th:text="${party.partyTitle}" class="list-group-item"></li>
                             </a>
                         </ul>
@@ -95,7 +98,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h3>Events you are confirmed to attend:</h3>
+                    <h3>Your Confirmed Event RSVP's:</h3>
                     <div th:if="${user.confirmed != null}">
                         <ul th:each="party : ${user.confirmed}">
                             <a th:href="${'/party/' + party.id}" class="list-group">
@@ -110,10 +113,13 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
 </body>
+
+<footer>
+</footer>
+
 </html>

@@ -4,9 +4,11 @@
     <div th:replace="~{common :: head}"></div>
     <title th:text="${party.partyTitle}"></title>
 </head>
+
 <header>
     <div th:replace="~{common :: nav-bar(${user})}"></div>
 </header>
+
 <body>
 <div class="container">
     <h2 th:text="${party.partyTitle}"></h2>
@@ -15,6 +17,7 @@
     <p>Location: <span th:text="${party.partyLocation}"></span></p>
     <p>Description: <span th:text="${party.partyDescription}"></span></p>
     <p>Guest List:</p>
+
     <div th:if="party.guestInvited != null">
         <form th:each="guest : ${party.guestInvited}" th:action="${'/party/' + party.id + '/delete-guest'}"
               th:method="PUT">
@@ -23,30 +26,32 @@
                     name="guestUsername" th:value="${guest.username}"> Not Attending
             </button>
         </form>
+
         <form th:each="guest : ${party.guestInvited}" th:action="${'/party/' + party.id + '/confirm'}" th:method="PUT">
             <button th:if="${guest.username == user.username}" type="submit" class="btn btn-outline-success"
                     name="guestUsername" th:value="${guest.username}"> Confirm Attendance
             </button>
         </form>
     </div>
+
     <div th:if="party.guestConfirmed != null">
         <div th:each="guest : ${party.guestConfirmed}">
             <span th:text="${guest.username}"></span>
         </div>
     </div>
-
 </div>
+
 <div th:if="${host}">
-    <p th:if = "${userNotFound}" class = "error">User not found</p>
+    <p th:if="${userNotFound}" class="error">User not found</p>
 
     <form th:action="${'/party/' + party.id + '/update'}" th:method="GET">
-        <button type="submit" class="btn btn-success">Update this Event</button>
+        <button type="submit" class="btn btn-outline-success">Update this Event</button>
     </form>
 </div>
+
 <div th:if="${host}">
     <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">
         <div class="form-group">
-
             <label>Invite Guests to your Event</label>
             <input type="text" class="form-control" id="guestUsername" aria-describedby="guestHelp"
                    name="guestUsername">
@@ -55,7 +60,7 @@
             </small>
         </div>
 
-        <button type="submit" class="btn btn-success">Add Guest</button>
+        <button type="submit" class="btn btn-outline-success">Add Guest</button>
     </form>
 </div>
 
