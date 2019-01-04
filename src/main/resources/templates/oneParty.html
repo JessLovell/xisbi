@@ -9,27 +9,48 @@
 </header>
 <body>
 <div class="container">
-    <h2 th:text="${party.partyTitle}" class="justify-content-md-center"></h2>
+    <div class="row justify-content-center">
+        <div class="col-4 ">
+            <center><h1 th:text="${party.partyTitle}"></h1></center>
+        </div>
+    </div>
 
     <div class="row justify-content-md-center">
         <div class="col-4 col-sm-6">
             <div class="row justify-content-md-center">
-                <div class="col-4 col-sm-6">
-                    <div th:if="${host}">
 
-                        <form th:action="${'/party/' + party.id + '/update'}" th:method="GET">
-                            <button type="submit" class="btn btn-success">Update this Event</button>
-                        </form>
-                    </div>
-                </div>
             </div>
 
             <div class="row justify-content-md-center">
                 <div class="col-4 col-sm-6">
-                    <h3>Hosted by<span th:text="${party.partyHost.firstName}"></span></h3>
-                    <p>Date/Time: <span th:text="${party.partyDate}"></span> at <span th:text="${party.partyTime}"></span></p>
-                    <p>Location: <span th:text="${party.partyLocation}"></span></p>
-                    <p>Description: <span th:text="${party.partyDescription}"></span></p>
+                    <div class="row ">
+                        <div class="col-auto ">
+                            <h3>Hosted by: <span th:text="${party.partyHost.firstName}"></span></h3>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-auto ">
+                            <p>Date/Time: <span th:text="${party.partyDate}"></span> at <span th:text="${party.partyTime}"></span></p>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-auto ">
+                            <p>Location: <span th:text="${party.partyLocation}"></span></p>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-auto ">
+                            <p>Description: <span th:text="${party.partyDescription}"></span></p>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div th:if="${host}" class="col-4 col-lg-2">
+                            <form th:action="${'/party/' + party.id + '/update'}" th:method="GET">
+                                <button type="submit" class="btn btn-success">Update this Event</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,7 +59,7 @@
             <h3>Guest List:</h3>
 
             <div class="row ">
-                <div class="col-12 col-sm-6">
+                <div class="col-10">
 
                     <div th:if="${host}">
                         <div  th:if = "${userNotFound}" class="alert alert-warning" role="alert">
