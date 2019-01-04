@@ -11,12 +11,11 @@ import java.util.Set;
 @Entity
 public class XisbiUser implements UserDetails {
 
-    // Generate XISBI table within xisbi_user database with a table name of the class "user"
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    // XISBI XisbiUser Properties
     public long id;
+
+    @Column(unique = true)
     public String username;
     public String password;
     public String firstName;

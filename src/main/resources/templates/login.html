@@ -13,14 +13,14 @@
     <p th:if="${loginError == true}" class="error">Wrong username or password.</p>
 
     <form action="/perform_login" method="POST">
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Input Username</label>
             <input type="text" class="form-control" id="username" aria-describedby="nameHelp"
                    placeholder="-- username --" name="username">
             <small id="nameHelp" class="form-text text-muted">Use your Xisbi username</small>
         </div>
 
-        <div class="form-group">
+        <div class="form-group login-group">
             <label>Input Password</label>
             <input type="password" class="form-control" id="password" aria-describedby="pwHelp"
                    placeholder="-- password --" name="password">
