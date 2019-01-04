@@ -62,7 +62,7 @@
                 <div class="col-10">
 
                     <div th:if="${host}">
-                        <div  th:if = "${userNotFound}" class="alert alert-warning" role="alert">
+                        <div  th:if = "${userNotFound}" class="alert alert-primary" role="alert">
                             <span>User not found</span>
                         </div>
                         <form th:action="${'/party/' + party.id + '/add-guest'}" th:method="POST">

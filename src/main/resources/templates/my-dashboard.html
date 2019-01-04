@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="col-12">
                     <div th:if="${deleteMessage}" class="alert alert-success" role="alert">
-                        Event has been deleted.
+                        <span>Event has been deleted.</span>
                     </div>
                     <h3>Events You are Hosting:</h3>
                 </div>
@@ -80,7 +80,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h3>Event Attendance Requests:</h3>
+                    <h3>Invited Events:</h3>
                     <div th:if="${user.invited != null}">
                         <ul th:each="party : ${user.invited}" class="list-group">
                             <a th:href="${'/party/' + party.id}">
@@ -98,7 +98,7 @@
 
             <div class="row">
                 <div class="col-12">
-                    <h3>Your Confirmed Event RSVP's:</h3>
+                    <h3>Your Confirmed Events:</h3>
                     <div th:if="${user.confirmed != null}">
                         <ul th:each="party : ${user.confirmed}">
                             <a th:href="${'/party/' + party.id}" class="list-group">
