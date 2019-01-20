@@ -4,6 +4,7 @@
 
 <head>
     <title>Error Handler</title>
+    <!-- Instead of using fragments, it's best practice on the error page to have as few dependencies as possible. That way, if the error is in your head fragment, you still show an error page without getting into an infinite error loop. -->
     <div th:replace="~{common :: head}"></div>
 </head>
 

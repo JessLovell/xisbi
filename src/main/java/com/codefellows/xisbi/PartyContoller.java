@@ -61,6 +61,7 @@ public class PartyContoller {
     }
 
     // Displays update version of party creation page via party.html template
+    // As noted on the form, since forms can't use PUT directly, you should use POST for this instead.
     @RequestMapping(value = "/party/{id}/update", method = RequestMethod.GET)
     public String displayUpdateTemplate(
             @PathVariable long id,
