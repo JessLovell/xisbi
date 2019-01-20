@@ -53,6 +53,7 @@ public class XisbiApplicationTests {
 		assertEquals("The server should give back a 200 response", 200, response.getStatusCodeValue());
 		assertTrue("There should be a form that makes a post to /perform_login within the page", response.toString().contains("<form action=\"/perform_login\" method=\"POST\">"));
 	}
-	
+
+	// There could be so many more tests here! Notably, you could have some tests that actually try to log in to the server & ensure that you get logged in/logged out correctly.
 }
 

@@ -70,6 +70,8 @@ public class UserController {
             @RequestParam String firstName,
             @RequestParam String lastName,
             @RequestParam String dateOfBirth,
+            // Since this is required, if I don't check any boxes, I get an error.
+            // You could make this optional to allow people to sign up without specifying any interests!
             @RequestParam String partyInterests) {
 
         // Season the password with some salt
@@ -92,6 +94,7 @@ public class UserController {
         if(p != null){
             XisbiUser user = (XisbiUser) ((UsernamePasswordAuthenticationToken) p).getPrincipal();
 
+            // I'm surprised by this: if you figure out that someone is logged in, it might be more useful to redirect them somewhere other than the login page.
             if (userRepo.findById(user.id).isPresent()) {
                 model.addAttribute("user", userRepo.findById(user.id).get());
             } else {
@@ -121,6 +124,7 @@ public class UserController {
             if (userRepo.findById(user.id).isPresent()) {
                 model.addAttribute("user", userRepo.findById(user.id).get());
             } else {
+                // ditto in these cases: if you determine that nobody is logged in, this should probably redirect somewhere else! Your web security config handles that, but this code still confuses me within the controller.
                 model.addAttribute("user", false);
             }
         } else {

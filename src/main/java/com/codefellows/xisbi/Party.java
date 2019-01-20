@@ -46,6 +46,8 @@ public class Party {
         this.partyDescription = partyDescription;
     }
 
+    // why does this return a boolean, if all it ever returns is true?
+    // seems void to me.
     public boolean updateParty(String partyTitle, String partyTime, String partyDate, String partyLocation, String partyDescription){
         this.partyTitle = partyTitle;
         this.partyTime = partyTime;

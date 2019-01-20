@@ -53,8 +53,10 @@
 <!-- FORM SECTION FOR PARTY UPDATES AND GUEST LIST ADDITION -->
 <!--TODO: add guest List view here-->
 
+<!-- Instead of having these two forms separately, you could just change the action/method and have a single form, which would help your code be DRYer. -->
 <div th:if="${update}">
     <!-- UPDATE THE PARTY DETAILS IN THE DB -->
+    <!-- Forms can't use the put method, so this isn't working as you expect. You should use POST instead, so the form data isn't in the URL. -->
     <form th:action="${'/party/' + party.id + '/update'}" th:method="PUT">
         <div class="form-group login-group">
             <label>Update Event Title</label>
